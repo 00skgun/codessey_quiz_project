@@ -36,10 +36,21 @@ class QuizGame:
         self.state_file = "state.json"
         self.quizzes = []
         self.best_score = None
+        self.is_running = True
         self.load_state()
 
     def get_default_quizzes(self):
         return [
+            Quiz(
+                "야구에서 한 팀이 공격할 때 아웃 3개를 당하면 어떻게 될까?",
+                ["경기가 종료된다", "수비를 계속한다", "공수 교대가 된다", "점수가 1점 추가된다"],
+                3
+            ),
+            Quiz(
+                "야구에서 홈런은 보통 어떤 상황을 의미할까?",
+                ["타자가 친 공이 땅에 한 번 튄 경우", "타자가 친 공이 담장을 넘어간 경우", "투수가 공을 빠르게 던진 경우", "포수가 공을 잡지 못한 경우"],
+                2
+            ),
             Quiz(
                 "야구 경기에서 스트라이크가 3번 선언되면 타자는 어떻게 될까?",
                 ["볼넷으로 출루한다", "아웃된다", "2루로 진루한다", "다시 타석에 선다"],
@@ -106,6 +117,20 @@ class QuizGame:
         except OSError:
             print("파일 저장 중 오류가 발생했습니다.")
 
+    def safe_input(self, prompt):
+        try:
+            return input(prompt)
+        except KeyboardInterrupt:
+            print("\n입력이 중단되었습니다. 현재 상태를 저장하고 종료합니다.")
+            self.save_state()
+            self.is_running = False
+            return None
+        except EOFError:
+            print("\n입력이 종료되었습니다. 현재 상태를 저장하고 종료합니다.")
+            self.save_state()
+            self.is_running = False
+            return None
+
     def show_menu(self):
         print("\n" + "=" * 40)
         print("        나만의 퀴즈 게임")
@@ -118,8 +143,13 @@ class QuizGame:
         print("=" * 40)
 
     def get_number_input(self, prompt, min_value, max_value):
-        while True:
-            user_input = input(prompt).strip()
+        while self.is_running:
+            user_input = self.safe_input(prompt)
+
+            if user_input is None:
+                return None
+
+            user_input = user_input.strip()
 
             if user_input == "":
                 print(f"입력이 비어 있습니다. {min_value}-{max_value} 사이의 숫자를 입력하세요.")
@@ -137,13 +167,24 @@ class QuizGame:
 
             return number
 
+        return None
+
     def get_non_empty_input(self, prompt):
-        while True:
-            user_input = input(prompt).strip()
+        while self.is_running:
+            user_input = self.safe_input(prompt)
+
+            if user_input is None:
+                return None
+
+            user_input = user_input.strip()
+
             if user_input == "":
                 print("빈 입력은 허용되지 않습니다. 다시 입력하세요.")
                 continue
+
             return user_input
+
+        return None
 
     def play_quiz(self):
         if len(self.quizzes) == 0:
@@ -154,11 +195,16 @@ class QuizGame:
         correct_count = 0
 
         for index, quiz in enumerate(self.quizzes, start=1):
+            if not self.is_running:
+                return
+
             print("\n" + "-" * 40)
             print(f"[문제 {index}]")
             quiz.display()
 
             user_answer = self.get_number_input("정답 입력(1-4): ", 1, 4)
+            if user_answer is None:
+                return
 
             if quiz.is_correct(user_answer):
                 print("정답입니다.")
@@ -191,13 +237,19 @@ class QuizGame:
         print("\n새 퀴즈를 추가합니다.")
 
         question = self.get_non_empty_input("문제를 입력하세요: ")
+        if question is None:
+            return
 
         choices = []
         for index in range(1, 5):
             choice = self.get_non_empty_input(f"선택지 {index}: ")
+            if choice is None:
+                return
             choices.append(choice)
 
         answer = self.get_number_input("정답 번호를 입력하세요 (1-4): ", 1, 4)
+        if answer is None:
+            return
 
         new_quiz = Quiz(question, choices, answer)
         self.quizzes.append(new_quiz)
@@ -233,21 +285,28 @@ class QuizGame:
         print(f"최고 점수: {self.best_score}문제 정답 ({best_percent}점)")
 
     def run(self):
-        while True:
-            self.show_menu()
-            choice = self.get_number_input("선택: ", 1, 5)
+        try:
+            while self.is_running:
+                self.show_menu()
+                choice = self.get_number_input("선택: ", 1, 5)
 
-            if choice == 1:
-                self.play_quiz()
-            elif choice == 2:
-                self.add_quiz()
-            elif choice == 3:
-                self.list_quizzes()
-            elif choice == 4:
-                self.show_best_score()
-            elif choice == 5:
-                print("프로그램을 종료합니다.")
-                break
+                if choice is None:
+                    break
+
+                if choice == 1:
+                    self.play_quiz()
+                elif choice == 2:
+                    self.add_quiz()
+                elif choice == 3:
+                    self.list_quizzes()
+                elif choice == 4:
+                    self.show_best_score()
+                elif choice == 5:
+                    print("프로그램을 종료합니다.")
+                    self.save_state()
+                    break
+        finally:
+            self.save_state()
 
 
 if __name__ == "__main__":
