@@ -42,6 +42,8 @@ class QuizGame:
                 2
             )
         ]
+        
+        self.best_score = None
 
     def show_menu(self):
 
@@ -97,10 +99,20 @@ class QuizGame:
 
         score = int((correct_count / len(self.quizzes)) * 100)
 
+        is_new_best = False
+        if self.best_score is None or correct_count > self.best_score:
+            self.best_score = correct_count
+            is_new_best = True
+
         print("\n" + "=" * 40)
         print(f"결과: {len(self.quizzes)}문제 중 {correct_count}문제 정답")
         print(f"점수: {score}점")
-        print("=" * 40)
+
+        if is_new_best:
+            print("새로운 최고 점수입니다.")
+        else:
+            best_percent = int((self.best_score / len(self.quizzes)) * 100)
+            print(f"현재 최고 점수: {self.best_score}문제 정답 ({best_percent}점)")
 
 
     def run(self):
