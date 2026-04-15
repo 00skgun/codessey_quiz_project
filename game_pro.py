@@ -75,6 +75,19 @@ class QuizGame:
 
             return number
         
+    def list_quizzes(self):
+        if len(self.quizzes) == 0:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        print(f"\n등록된 퀴즈 목록 (총 {len(self.quizzes)}개)")
+        print("-" * 40)
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+           print(f"[{index}] {quiz.question}")
+
+        print("-" * 40)
+
     def get_non_empty_input(self, prompt):
         while True:
             user_input = input(prompt).strip()
@@ -139,6 +152,18 @@ class QuizGame:
         self.quizzes.append(new_quiz)
 
         print("퀴즈가 추가되었습니다.")
+    def list_quizzes(self):
+        if len(self.quizzes) == 0:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        print(f"\n등록된 퀴즈 목록 (총 {len(self.quizzes)}개)")
+        print("-" * 40)
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print(f"[{index}] {quiz.question}")
+
+        print("-" * 40)
 
     def run(self):
         while True:
@@ -150,7 +175,7 @@ class QuizGame:
             elif choice == 2:
                 self.add_quiz()
             elif choice == 3:
-                print("퀴즈 목록")
+                self.list_quizzes()
             elif choice == 4:
                 print("점수 확인")
             elif choice == 5:
