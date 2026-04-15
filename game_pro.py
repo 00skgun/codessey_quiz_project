@@ -72,6 +72,36 @@ class QuizGame:
                 continue
 
             return number
+        
+    def play_quiz(self):
+        if len(self.quizzes) == 0:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        print(f"\n퀴즈를 시작합니다. 총 {len(self.quizzes)}문제입니다.")
+        correct_count = 0
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print("\n" + "-" * 40)
+            print(f"[문제 {index}]")
+            quiz.display()
+
+            user_answer = self.get_number_input("정답 입력(1-4): ", 1, 4)
+
+            if quiz.is_correct(user_answer):
+                print("정답입니다.")
+                correct_count += 1
+            else:
+                correct_choice = quiz.choices[quiz.answer - 1]
+                print(f"오답입니다. 정답은 {quiz.answer}번 ({correct_choice})입니다.")
+
+        score = int((correct_count / len(self.quizzes)) * 100)
+
+        print("\n" + "=" * 40)
+        print(f"결과: {len(self.quizzes)}문제 중 {correct_count}문제 정답")
+        print(f"점수: {score}점")
+        print("=" * 40)
+
 
     def run(self):
         while True:
@@ -79,7 +109,7 @@ class QuizGame:
             choice = self.get_number_input("선택: ", 1, 5)
 
             if choice == 1:
-                print("퀴즈 풀기")
+                self.play_quiz()
             elif choice == 2:
                 print("퀴즈 추가")
             elif choice == 3:
