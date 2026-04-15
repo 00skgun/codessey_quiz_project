@@ -112,4 +112,4 @@ codessey_quiz_project/
 이 프로젝트에서는 Git을 사용하여 기능 단위로 커밋을 나누고, 브랜치를 생성하여 퀴즈 플레이 기능을 개발한 뒤 병합했습니다.  
 또한 원격 저장소에 push하고, 저장소를 clone한 뒤 변경사항을 pull하는 과정도 실습했습니다.
 
-clone 저장소에서 변경 후 push/pull 실습 완료
+clone 저장소에서 변경 후 push/pull 실습 완료!
