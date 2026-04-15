@@ -15,7 +15,7 @@
 
 ### 실행 명령어
 ```bash
-python 
+python game_pro.py
 ```
 
 ## 4. 기능 목록
