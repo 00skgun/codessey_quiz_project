@@ -75,6 +75,14 @@ class QuizGame:
 
             return number
         
+    def get_non_empty_input(self, prompt):
+        while True:
+            user_input = input(prompt).strip()
+            if user_input == "":
+                print("빈 입력은 허용되지 않습니다. 다시 입력하세요.")
+                continue
+            return user_input        
+        
     def play_quiz(self):
         if len(self.quizzes) == 0:
             print("등록된 퀴즈가 없습니다.")
@@ -115,6 +123,23 @@ class QuizGame:
             print(f"현재 최고 점수: {self.best_score}문제 정답 ({best_percent}점)")
 
 
+    def add_quiz(self):
+        print("\n새 퀴즈를 추가합니다.")
+
+        question = self.get_non_empty_input("문제를 입력하세요: ")
+
+        choices = []
+        for index in range(1, 5):
+            choice = self.get_non_empty_input(f"선택지 {index}: ")
+            choices.append(choice)
+
+        answer = self.get_number_input("정답 번호를 입력하세요 (1-4): ", 1, 4)
+
+        new_quiz = Quiz(question, choices, answer)
+        self.quizzes.append(new_quiz)
+
+        print("퀴즈가 추가되었습니다.")
+
     def run(self):
         while True:
             self.show_menu()
@@ -123,7 +148,7 @@ class QuizGame:
             if choice == 1:
                 self.play_quiz()
             elif choice == 2:
-                print("퀴즈 추가")
+                self.add_quiz()
             elif choice == 3:
                 print("퀴즈 목록")
             elif choice == 4:
