@@ -39,6 +39,9 @@ class QuizGame:
         self.is_running = True
         self.load_state()
 
+    def print_line(self):
+        print("=" * 40)
+
     def get_default_quizzes(self):
         return [
             Quiz(
@@ -132,15 +135,16 @@ class QuizGame:
             return None
 
     def show_menu(self):
-        print("\n" + "=" * 40)
+        print("\n", end="")
+        self.print_line()
         print("        나만의 퀴즈 게임")
-        print("=" * 40)
+        self.print_line()
         print("1. 퀴즈 풀기")
         print("2. 퀴즈 추가")
         print("3. 퀴즈 목록")
         print("4. 점수 확인")
         print("5. 종료")
-        print("=" * 40)
+        self.print_line()
 
     def get_number_input(self, prompt, min_value, max_value):
         while self.is_running:
@@ -191,7 +195,8 @@ class QuizGame:
             print("등록된 퀴즈가 없습니다.")
             return
 
-        print(f"\n퀴즈를 시작합니다. 총 {len(self.quizzes)}문제입니다.")
+        total_quizzes = len(self.quizzes)
+        print(f"\n퀴즈를 시작합니다. 총 {total_quizzes}문제입니다.")
         correct_count = 0
 
         for index, quiz in enumerate(self.quizzes, start=1):
@@ -213,7 +218,7 @@ class QuizGame:
                 correct_choice = quiz.choices[quiz.answer - 1]
                 print(f"오답입니다. 정답은 {quiz.answer}번 ({correct_choice})입니다.")
 
-        score = int((correct_count / len(self.quizzes)) * 100)
+        score = int((correct_count / total_quizzes) * 100)
 
         is_new_best = False
         if self.best_score is None or correct_count > self.best_score:
@@ -221,17 +226,18 @@ class QuizGame:
             is_new_best = True
             self.save_state()
 
-        print("\n" + "=" * 40)
-        print(f"결과: {len(self.quizzes)}문제 중 {correct_count}문제 정답")
+        print("\n", end="")
+        self.print_line()
+        print(f"결과: {total_quizzes}문제 중 {correct_count}문제 정답")
         print(f"점수: {score}점")
 
         if is_new_best:
             print("새로운 최고 점수입니다.")
         else:
-            best_percent = int((self.best_score / len(self.quizzes)) * 100)
+            best_percent = int((self.best_score / total_quizzes) * 100)
             print(f"현재 최고 점수: {self.best_score}문제 정답 ({best_percent}점)")
 
-        print("=" * 40)
+        self.print_line()
 
     def add_quiz(self):
         print("\n새 퀴즈를 추가합니다.")
@@ -284,6 +290,20 @@ class QuizGame:
         best_percent = int((self.best_score / total_quiz_count) * 100)
         print(f"최고 점수: {self.best_score}문제 정답 ({best_percent}점)")
 
+    def handle_menu_choice(self, choice):
+        if choice == 1:
+            self.play_quiz()
+        elif choice == 2:
+            self.add_quiz()
+        elif choice == 3:
+            self.list_quizzes()
+        elif choice == 4:
+            self.show_best_score()
+        elif choice == 5:
+            print("프로그램을 종료합니다.")
+            self.save_state()
+            self.is_running = False
+
     def run(self):
         try:
             while self.is_running:
@@ -293,18 +313,7 @@ class QuizGame:
                 if choice is None:
                     break
 
-                if choice == 1:
-                    self.play_quiz()
-                elif choice == 2:
-                    self.add_quiz()
-                elif choice == 3:
-                    self.list_quizzes()
-                elif choice == 4:
-                    self.show_best_score()
-                elif choice == 5:
-                    print("프로그램을 종료합니다.")
-                    self.save_state()
-                    break
+                self.handle_menu_choice(choice)
         finally:
             self.save_state()
 
