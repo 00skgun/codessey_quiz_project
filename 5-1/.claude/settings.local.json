@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python fix.py)",
+      "Bash(rm -f cafe.db)",
+      "Bash(sqlite3 cafe.db \".read schema.sql\")",
+      "Bash(sqlite3 cafe.db \".read data.sql\")",
+      "Bash(sqlite3 cafe.db \".read capture.sql\")"
+    ]
+  }
+}
