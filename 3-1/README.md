@@ -78,12 +78,13 @@ Python의 `dict`, `set`, `collections`는 저장소 구현에 사용하지 않�
 
 한 키는 다음 세 구조에 연결됩니다.
 
-```text
-HashMap: key -> Entry(value, lru_node, expire_at)
-                         |                 |
-                         v                 v
-                  LRU 이중 리스트       TTL 최소 힙
-                  최신 <----> 오래됨      최소 expire_at가 루트
+```mermaid
+flowchart LR
+    CMD["사용자 명령"] --> CORE["MiniRedis"]
+    CORE -->|"key로 조회"| MAP["HashMap"]
+    MAP --> ENTRY["Entry<br/>key, value, lru_node, expire_at"]
+    ENTRY -. "lru_node 참조" .-> LRU["LRU 이중 연결 리스트<br/>head: 최신 / tail: 오래됨"]
+    ENTRY -. "expire_at 비교" .-> HEAP["TTL 최소 힙<br/>루트: 가장 빠른 만료"]
 ```
 
 | 연산 | 평균 시간 | 비고 |
@@ -96,6 +97,163 @@ HashMap: key -> Entry(value, lru_node, expire_at)
 | `KEYS` | O(n) | 전체 버킷 순회 |
 
 TTL 힙은 lazy deletion을 사용합니다. 같은 키의 TTL을 다시 설정하거나 `SET`으로 TTL을 없애도 옛 힙 레코드를 임의 위치에서 찾지 않습니다. 레코드가 힙 루트에 도달했을 때 현재 `Entry.expire_at`과 같을 때만 실제 키를 지웁니다.
+
+## 자료구조 사용 과정 그림
+
+아래 다이어그램은 GitHub README에서 그림으로 렌더링됩니다.
+
+### 1. SET 명령 처리 과정
+
+`SET`은 해시맵에 데이터를 저장하고 LRU를 갱신한 뒤, 메모리가 넘치면 오래된 키를 제거합니다.
+
+```mermaid
+flowchart TD
+    A["SET key value"] --> B["TTL 힙에서 만료 키 정리"]
+    B --> C["UTF-8 key + value 크기 계산"]
+    C --> D{"단일 엔트리가<br/>maxmemory보다 큰가?"}
+    D -->|"예"| OOM["상태를 변경하지 않고 OOM"]
+    D -->|"아니오"| E{"기존 키인가?"}
+    E -->|"신규"| F["Entry 생성 후 HashMap.put"]
+    E -->|"덮어쓰기"| G["기존 크기 차감<br/>value 변경 및 TTL 제거"]
+    F --> H["used_memory에 새 크기 추가"]
+    G --> H
+    H --> I["Entry.lru_node를 LRU head로 이동"]
+    I --> J{"used_memory가<br/>maxmemory를 초과하는가?"}
+    J -->|"아니오"| OK["OK 반환"]
+    J -->|"예"| K["LRU tail 엔트리 삭제"]
+    K --> L["used_memory 차감<br/>evicted_keys 증가"]
+    L --> J
+```
+
+### 2. GET 명령 처리 과정
+
+`GET`은 LRU 리스트를 순회하지 않습니다. 해시맵에서 `Entry`를 찾고 `Entry.lru_node`로 해당 LRU 노드에 바로 접근합니다.
+
+```mermaid
+flowchart TD
+    A["GET key"] --> B["TTL 최소 힙의 루트 확인"]
+    B --> C{"현재까지 만료된<br/>힙 항목이 있는가?"}
+    C -->|"예"| D["현재 Entry.expire_at과 비교"]
+    D --> E{"유효한 만료 기록인가?"}
+    E -->|"예"| F["HashMap, LRU, used_memory에서 삭제"]
+    E -->|"아니오: 옛 TTL"| G["lazy 항목만 무시"]
+    F --> B
+    G --> B
+    C -->|"아니오"| H["HashMap.get key"]
+    H --> I{"Entry가 존재하는가?"}
+    I -->|"아니오"| NIL["nil 반환<br/>LRU는 변경하지 않음"]
+    I -->|"예"| J["value 읽기"]
+    J --> K["Entry.lru_node를 head로 이동"]
+    K --> V["따옴표로 감싼 value 반환"]
+```
+
+### 3. GET으로 LRU 순서가 바뀌는 과정
+
+`user:1`을 조회하면 해당 노드를 리스트의 맨 앞으로 옮깁니다.
+
+```mermaid
+flowchart TB
+    subgraph BEFORE["GET user:1 실행 전"]
+        direction LR
+        B1["head<br/>user:3"] <--> B2["user:1"] <--> B3["tail<br/>user:2"]
+    end
+
+    ACTION["HashMap에서 user:1 Entry 조회<br/>Entry.lru_node로 노드에 바로 접근"]
+
+    subgraph AFTER["GET user:1 실행 후"]
+        direction LR
+        A1["head<br/>user:1"] <--> A2["user:3"] <--> A3["tail<br/>user:2"]
+    end
+
+    BEFORE --> ACTION --> AFTER
+```
+
+메모리가 초과되면 `tail`의 `user:2`가 제거됩니다.
+
+```mermaid
+flowchart LR
+    S1["head<br/>user:3"] <--> S2["user:1"] <--> S3["tail<br/>user:2"]
+    S3 -->|"메모리 초과"| REMOVE["HashMap과 LRU에서 user:2 삭제"]
+    REMOVE --> RESULT["used_memory - 9<br/>evicted_keys + 1"]
+```
+
+### 4. 해시맵 조회와 체이닝
+
+키를 FNV-1a 해시 함수에 넣고 버킷 개수로 나눈 나머지를 인덱스로 사용합니다. 서로 다른 키가 같은 인덱스를 얻으면 버킷 내부 연결 리스트에 이어 붙입니다.
+
+```mermaid
+flowchart LR
+    KA["key: a"] --> HA["FNV-1a 해시"]
+    KI["key: i"] --> HI["FNV-1a 해시"]
+    HA --> IA["hash mod 8 = 4"]
+    HI --> II["hash mod 8 = 4"]
+    IA --> BUCKET["bucket 4"]
+    II --> BUCKET
+    BUCKET --> NI["BucketNode<br/>i, value 2"]
+    NI --> NA["BucketNode<br/>a, value 1"]
+    NA --> NONE["None"]
+```
+
+체이닝은 해시 충돌을 해결하기 위한 단일 연결 리스트이고, LRU 이중 연결 리스트는 최근 사용 순서를 관리하는 별도의 구조입니다.
+
+### 5. 로드 팩터 초과와 버킷 확장
+
+초기 버킷이 8개일 때 7번째 키를 넣으려 하면 예정 로드 팩터가 0.875가 됩니다. 기준 0.75를 넘으므로 버킷을 16개로 확장하고 모든 키를 재해시합니다.
+
+```mermaid
+flowchart LR
+    A["버킷 8개<br/>엔트리 6개<br/>load factor 0.75"] --> B["7번째 키 삽입 예정<br/>7 / 8 = 0.875"]
+    B --> C{"0.75 초과"}
+    C -->|"예"| D["버킷 16개 생성"]
+    D --> E["모든 기존 키에 대해<br/>hash mod 16 재계산"]
+    E --> F["새 버킷으로 노드 재연결"]
+    F --> G["7번째 키 삽입<br/>7 / 16 = 0.4375"]
+```
+
+단순히 빈 버킷만 `append`하면 기존 키는 옛 위치에 남습니다. capacity가 바뀌면 `hash % capacity` 결과도 바뀌므로 기존 키를 반드시 새 인덱스로 옮겨야 합니다.
+
+### 6. TTL 최소 힙 동작
+
+최소 힙은 가장 빠른 만료 시각을 루트에 둡니다. 내부에서는 직접 구현한 `DynamicArray`에 완전 이진 트리를 1차원으로 저장합니다.
+
+```mermaid
+flowchart TB
+    ROOT["index 0<br/>110초, key B"] --> LEFT["index 1<br/>130초, key A"]
+    ROOT --> RIGHT["index 2<br/>120초, key C"]
+```
+
+배열과 트리 인덱스의 관계는 다음과 같습니다.
+
+```text
+배열: [(110, B), (130, A), (120, C)]
+
+부모       = (i - 1) // 2
+왼쪽 자식  = 2 * i + 1
+오른쪽 자식 = 2 * i + 2
+```
+
+현재 시각이 115초라면 루트의 B를 삭제하고 `_heapify_down`으로 다음 최솟값 C를 루트에 배치합니다.
+
+```mermaid
+flowchart LR
+    BEFORE["루트: 110초 B"] -->|"현재 시각 115초"| POP["B 만료 및 삭제"]
+    POP --> HEAPIFY["마지막 항목을 루트로 이동<br/>heapify_down"]
+    HEAPIFY --> AFTER["새 루트: 120초 C"]
+    AFTER --> STOP["120은 115보다 크므로 정리 중단"]
+```
+
+### 7. 자료구조별 역할 요약
+
+```mermaid
+flowchart LR
+    KEY["key"] --> MAP["HashMap<br/>평균 O(1) 조회"]
+    MAP --> ENTRY["Entry"]
+    ENTRY --> VALUE["value 반환"]
+    ENTRY --> NODE["lru_node"]
+    NODE --> LIST["DoublyLinkedList<br/>O(1) 이동 및 삭제"]
+    ENTRY --> EXPIRE["expire_at"]
+    EXPIRE --> HEAP["MinHeap<br/>다음 만료 O(1) 확인"]
+```
 
 ---
 
