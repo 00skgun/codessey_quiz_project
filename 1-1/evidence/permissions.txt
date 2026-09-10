@@ -1,0 +1,7 @@
+[OK] admin/dev read + write: /home/agent-admin/agent-app/upload_files (default ACL inherits even with umask 077)
+[OK] admin/dev read + write: /home/agent-admin/agent-app/api_keys (default ACL inherits even with umask 077)
+[OK] admin/dev read + write: /var/log/agent-app (default ACL inherits even with umask 077)
+[OK] agent-test can read/write upload_files
+[OK] agent-test denied read/write: /home/agent-admin/agent-app/api_keys
+[OK] agent-test denied read/write: /var/log/agent-app
+agent-dev agent-core 750 /home/agent-admin/agent-app/bin/monitor.sh

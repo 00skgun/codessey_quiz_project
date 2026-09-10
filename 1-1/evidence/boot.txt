@@ -1,0 +1,25 @@
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2113]: [INFO] Provided binary compatibility: AGENT_KEY_PATH=/home/agent-admin/agent-app/api_keys (directory)
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: >>> Starting Agent Boot Sequence...
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [1/5] Checking User Account               [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Running as service user 'agent-admin' (uid=1001)
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [2/5] Verifying Environment Variables     [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... All required Envs correct
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [3/5] Checking Required Files             [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Verified 'secret.key' with correct key string.
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [4/5] Checking Port Availability          [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Port 15034 is available.
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [5/5] Verifying Log Permission            [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Log directory is writable: /var/log/agent-app
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: ------------------------------------------------------------
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: All Boot Checks Passed!
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: Agent READY
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] [SafetyGuard] Process priority lowered (nice=10).
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] Agent listening at port 15034
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] === Agent Worker Started ===
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO]    > Cycle: 0 -> 256MB/Lv10 -> 0
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] --- Step Info: Mode=UP, CPU Lv=1, Mem=0MB ---
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,862 [INFO] [Memory] Increasing... (+25 MB) Total: 25 MB
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,862 [INFO] [CPU] Occupy core for 1s (Level 1)
+Sep 05 21:40:58 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:58,869 [INFO] --- Step Info: Mode=UP, CPU Lv=2, Mem=25MB ---
+Sep 05 21:40:58 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:58,897 [INFO] [Memory] Increasing... (+25 MB) Total: 50 MB
+Sep 05 21:40:58 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:58,898 [INFO] [CPU] Occupy core for 2s (Level 2)

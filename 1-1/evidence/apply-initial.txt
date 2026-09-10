@@ -1,0 +1,193 @@
+2026-09-05T19:57:21+09:00
+Get:1 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  InRelease [1477 B]
+Get:2 https://download.docker.com/linux/ubuntu jammy InRelease [48.5 kB]
+Get:3 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  Packages [27.1 kB]
+Get:4 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages [86.6 kB]
+Get:5 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Hit:6 http://archive.ubuntu.com/ubuntu jammy InRelease
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:8 https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu jammy InRelease [24.6 kB]
+Get:9 https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu jammy/main amd64 Packages [53.8 kB]
+Get:10 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3523 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3795 kB]
+Get:19 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [495 kB]
+Get:20 http://security.ubuntu.com/ubuntu jammy-security/main amd64 c-n-f Metadata [14.7 kB]
+Get:21 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6299 kB]
+Get:22 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1212 kB]
+Get:23 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 c-n-f Metadata [600 B]
+Get:24 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1048 kB]
+Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [563 kB]
+Get:26 http://security.ubuntu.com/ubuntu jammy-security/universe Translation-en [235 kB]
+Get:27 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [23.2 kB]
+Get:28 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [69.1 kB]
+Get:29 http://security.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [12.9 kB]
+Get:30 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [544 B]
+Get:31 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6541 kB]
+Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1255 kB]
+Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1255 kB]
+Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1255 kB]
+Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1255 kB]
+Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1255 kB]
+Get:37 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1282 kB]
+Get:38 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [323 kB]
+Fetched 27.2 MB in 9s (3037 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+cron is already the newest version (3.0pl1-137ubuntu3).
+cron set to manually installed.
+procps is already the newest version (2:3.3.17-6ubuntu2.1).
+procps set to manually installed.
+python3 is already the newest version (3.10.6-1~22.04.1).
+python3 set to manually installed.
+sudo is already the newest version (1.9.9-1ubuntu2.6).
+sudo set to manually installed.
+ufw is already the newest version (0.36.1-4ubuntu0.1).
+ufw set to manually installed.
+The following additional packages will be installed:
+  libnspr4 libnss3 libpoppler118 libwrap0 ncurses-term openssh-client
+  openssh-sftp-server poppler-data ssh-import-id
+Suggested packages:
+  iproute2-doc keychain libpam-ssh monkeysphere ssh-askpass molly-guard
+  ghostscript fonts-japanese-mincho | fonts-ipafont-mincho
+  fonts-japanese-gothic | fonts-ipafont-gothic fonts-arphic-ukai
+  fonts-arphic-uming fonts-nanum util-linux-locales
+The following NEW packages will be installed:
+  acl libnspr4 libnss3 libpoppler118 libwrap0 ncurses-term openssh-server
+  openssh-sftp-server poppler-data poppler-utils ssh-import-id
+The following packages will be upgraded:
+  iproute2 openssh-client util-linux
+3 upgraded, 11 newly installed, 0 to remove and 170 not upgraded.
+Need to get 6400 kB/8786 kB of archives.
+After this operation, 28.5 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 util-linux amd64 2.37.2-4ubuntu3.6 [1067 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-client amd64 1:8.9p1-3ubuntu0.17 [905 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-sftp-server amd64 1:8.9p1-3ubuntu0.17 [38.9 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-server amd64 1:8.9p1-3ubuntu0.17 [436 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 iproute2 amd64 5.15.0-1ubuntu2.2 [1072 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnss3 amd64 2:3.98-0ubuntu0.22.04.4 [1347 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpoppler118 amd64 22.02.0-2ubuntu0.13 [1081 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 ncurses-term all 6.3-2ubuntu0.3 [268 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 poppler-utils amd64 22.02.0-2ubuntu0.13 [186 kB]
+Preconfiguring packages ...
+Fetched 6400 kB in 4s (1710 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 79889 files and directories currently installed.)
+Preparing to unpack .../util-linux_2.37.2-4ubuntu3.6_amd64.deb ...
+Unpacking util-linux (2.37.2-4ubuntu3.6) over (2.37.2-4ubuntu3.5) ...
+Setting up util-linux (2.37.2-4ubuntu3.6) ...
+fstrim.service is a disabled or a static unit not running, not starting it.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 79889 files and directories currently installed.)
+Preparing to unpack .../00-openssh-client_1%3a8.9p1-3ubuntu0.17_amd64.deb ...
+Unpacking openssh-client (1:8.9p1-3ubuntu0.17) over (1:8.9p1-3ubuntu0.15) ...
+Selecting previously unselected package openssh-sftp-server.
+Preparing to unpack .../01-openssh-sftp-server_1%3a8.9p1-3ubuntu0.17_amd64.deb ...
+Unpacking openssh-sftp-server (1:8.9p1-3ubuntu0.17) ...
+Selecting previously unselected package libwrap0:amd64.
+Preparing to unpack .../02-libwrap0_7.6.q-31build2_amd64.deb ...
+Unpacking libwrap0:amd64 (7.6.q-31build2) ...
+Selecting previously unselected package openssh-server.
+Preparing to unpack .../03-openssh-server_1%3a8.9p1-3ubuntu0.17_amd64.deb ...
+Unpacking openssh-server (1:8.9p1-3ubuntu0.17) ...
+Selecting previously unselected package poppler-data.
+Preparing to unpack .../04-poppler-data_0.4.11-1_all.deb ...
+Unpacking poppler-data (0.4.11-1) ...
+Preparing to unpack .../05-iproute2_5.15.0-1ubuntu2.2_amd64.deb ...
+Unpacking iproute2 (5.15.0-1ubuntu2.2) over (5.15.0-1ubuntu2) ...
+Selecting previously unselected package acl.
+Preparing to unpack .../06-acl_2.3.1-1_amd64.deb ...
+Unpacking acl (2.3.1-1) ...
+Selecting previously unselected package libnspr4:amd64.
+Preparing to unpack .../07-libnspr4_2%3a4.35-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking libnspr4:amd64 (2:4.35-0ubuntu0.22.04.1) ...
+Selecting previously unselected package libnss3:amd64.
+Preparing to unpack .../08-libnss3_2%3a3.98-0ubuntu0.22.04.4_amd64.deb ...
+Unpacking libnss3:amd64 (2:3.98-0ubuntu0.22.04.4) ...
+Selecting previously unselected package libpoppler118:amd64.
+Preparing to unpack .../09-libpoppler118_22.02.0-2ubuntu0.13_amd64.deb ...
+Unpacking libpoppler118:amd64 (22.02.0-2ubuntu0.13) ...
+Selecting previously unselected package ncurses-term.
+Preparing to unpack .../10-ncurses-term_6.3-2ubuntu0.3_all.deb ...
+Unpacking ncurses-term (6.3-2ubuntu0.3) ...
+Selecting previously unselected package poppler-utils.
+Preparing to unpack .../11-poppler-utils_22.02.0-2ubuntu0.13_amd64.deb ...
+Unpacking poppler-utils (22.02.0-2ubuntu0.13) ...
+Selecting previously unselected package ssh-import-id.
+Preparing to unpack .../12-ssh-import-id_5.11-0ubuntu1_all.deb ...
+Unpacking ssh-import-id (5.11-0ubuntu1) ...
+Setting up iproute2 (5.15.0-1ubuntu2.2) ...
+Setting up openssh-client (1:8.9p1-3ubuntu0.17) ...
+Setting up ssh-import-id (5.11-0ubuntu1) ...
+Setting up poppler-data (0.4.11-1) ...
+Setting up acl (2.3.1-1) ...
+Setting up libwrap0:amd64 (7.6.q-31build2) ...
+Setting up libnspr4:amd64 (2:4.35-0ubuntu0.22.04.1) ...
+Setting up ncurses-term (6.3-2ubuntu0.3) ...
+Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.17) ...
+Setting up openssh-server (1:8.9p1-3ubuntu0.17) ...
+
+Creating config file /etc/ssh/sshd_config with new version
+Creating SSH2 RSA key; this may take some time ...
+3072 SHA256:6lHF5h7o6G3ZFa6kKM1bHnLZGlPy0IF+eFXJPFgQzS8 root@DESKTOP-6U6TM2O (RSA)
+Creating SSH2 ECDSA key; this may take some time ...
+256 SHA256:hFvP6UQlQAQMacIwgq18Yl1Zs8VYDkYbIILhp2tq4Wc root@DESKTOP-6U6TM2O (ECDSA)
+Creating SSH2 ED25519 key; this may take some time ...
+256 SHA256:/CzXIkjxiHIWJOfeusyk7PQg2F3/ajj8vKzRe2/bWqY root@DESKTOP-6U6TM2O (ED25519)
+Created symlink /etc/systemd/system/sshd.service -> /lib/systemd/system/ssh.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service -> /lib/systemd/system/ssh.service.
+rescue-ssh.target is a disabled or a static unit, not starting it.
+ssh.socket is a disabled or a static unit, not starting it.
+Setting up libnss3:amd64 (2:3.98-0ubuntu0.22.04.4) ...
+Setting up libpoppler118:amd64 (22.02.0-2ubuntu0.13) ...
+Setting up poppler-utils (22.02.0-2ubuntu0.13) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.13) ...
+Processing triggers for ufw (0.36.1-4ubuntu0.1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for fontconfig (2.13.1-4.2ubuntu5) ...
+/tmp/tmp.rPawGwz9bi: parsed OK
+[OK] Accounts, groups, ACLs, app, environment and scripts installed.
+Next: configure SSH/UFW in README, then run the app as agent-admin.
+[OK] admin/dev read + write: /home/agent-admin/agent-app/upload_files (default ACL inherits even with umask 077)
+[OK] admin/dev read + write: /home/agent-admin/agent-app/api_keys (default ACL inherits even with umask 077)
+[OK] admin/dev read + write: /var/log/agent-app (default ACL inherits even with umask 077)
+[OK] agent-test can read/write upload_files
+[OK] agent-test denied read/write: /home/agent-admin/agent-app/api_keys
+[OK] agent-test denied read/write: /var/log/agent-app
+agent-dev agent-core 750 /home/agent-admin/agent-app/bin/monitor.sh
+awk: cmd. line:1: warning: escape sequence `\/' treated as plain `/'
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Firewall is active and enabled on system startup
+Synchronizing state of ssh.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable ssh
+port 20022
+permitrootlogin no
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                        
+LISTEN 0      128          0.0.0.0:20022      0.0.0.0:*    users:(("sshd",pid=2286,fd=3))
+LISTEN 0      128             [::]:20022         [::]:*    users:(("sshd",pid=2286,fd=4))
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+20022/tcp                  ALLOW IN    Anywhere                  
+15034/tcp                  ALLOW IN    Anywhere                  
+20022/tcp (v6)             ALLOW IN    Anywhere (v6)             
+15034/tcp (v6)             ALLOW IN    Anywhere (v6)             
+
+Created symlink /etc/systemd/system/multi-user.target.wants/agent-app.service -> /etc/systemd/system/agent-app.service.

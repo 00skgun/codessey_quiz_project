@@ -1,0 +1,17 @@
+[Unit]
+Description=Provided agent application for Linux assignment
+After=network.target
+
+[Service]
+Type=simple
+User=agent-admin
+Group=agent-admin
+SupplementaryGroups=agent-common agent-core
+WorkingDirectory=/home/agent-admin/agent-app
+ExecStart=/home/agent-admin/agent-app/bin/run-app.sh
+UMask=0007
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

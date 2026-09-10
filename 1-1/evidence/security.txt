@@ -1,0 +1,26 @@
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Firewall is active and enabled on system startup
+port 20022
+permitrootlogin no
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                        
+LISTEN 0      128          0.0.0.0:20022      0.0.0.0:*    users:(("sshd",pid=2047,fd=3))
+LISTEN 0      128             [::]:20022         [::]:*    users:(("sshd",pid=2047,fd=4))
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+20022/tcp                  ALLOW IN    Anywhere                  
+15034/tcp                  ALLOW IN    Anywhere                  
+20022/tcp (v6)             ALLOW IN    Anywhere (v6)             
+15034/tcp (v6)             ALLOW IN    Anywhere (v6)             
+

@@ -1,0 +1,14 @@
+2026-09-05T21:48:16+09:00
+[OK] Installed source matches: monitor.sh
+[OK] Installed source matches: report.sh
+[OK] Installed source matches: run-app.sh
+[OK] Installed source matches: install-cron.sh
+cdbae8c066e734916b7cd25dc9e651818acf63b2e6817125ede5e85a4de0ff5a  /home/agent-admin/agent-app/agent-app-linux-x86
+t_secret.key
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: Agent READY
+[OK] Log grew while no manual monitor was run.
+active
+active
+active
+agent-dev agent-core 750 /home/agent-admin/agent-app/bin/monitor.sh
+[OK] Final installed files and captured evidence verified.

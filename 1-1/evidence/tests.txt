@@ -1,0 +1,29 @@
+2026-09-05T21:48:16+09:00
+Linux DESKTOP-6U6TM2O 6.6.114.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Mon Dec  1 20:46:23 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+[SYNTAX OK] apply-mission.sh
+[SYNTAX OK] collect-evidence.sh
+[SYNTAX OK] configure-security.sh
+[SYNTAX OK] install-cron.sh
+[SYNTAX OK] monitor.sh
+[SYNTAX OK] report.sh
+[SYNTAX OK] run-app.sh
+[SYNTAX OK] setup.sh
+[SYNTAX OK] verify-permissions.sh
+[SYNTAX OK] tests/run-tests.sh
+[SYNTAX OK] tests/validate.sh
+[PASS] healthy run: exact log format; equal thresholds do not warn
+[PASS] missing process fails without a success log
+[PASS] missing TCP listener fails
+[PASS] unrelated listener cannot pass the app health check
+[PASS] inactive firewall warns and continues
+[PASS] unknown firewall warns and continues
+[PASS] all three strict greater-than threshold warnings
+[PASS] CPU counter delta and invalid sample handling
+[PASS] unreadable resource fails without fabricating a sample
+[PASS] rotation after 12 cycles retains current + 9 files, each <= 10 MiB
+[PASS] concurrent monitor skips without writing
+[PASS] report averages CPU/MEM/DISK and excludes malformed rows
+[PASS] report includes both time range endpoints
+[PASS] empty report and invalid/reversed date ranges
+
+14 tests passed. Synthetic fixtures are not real server evidence.

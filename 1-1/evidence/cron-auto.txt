@@ -1,0 +1,20 @@
+BEFORE (no manual monitor execution during the following 70 seconds)
+2026-09-05T21:41:01+09:00
+1 /var/log/agent-app/monitor.log
+[2026-09-05 21:41:01] PID:2113,2120 CPU:1.1% MEM:4.8% DISK_USED:6%
+AFTER
+2026-09-05T21:42:11+09:00
+2 /var/log/agent-app/monitor.log
+[2026-09-05 21:41:01] PID:2113,2120 CPU:1.1% MEM:4.8% DISK_USED:6%
+[2026-09-05 21:42:02] PID:2113,2120 CPU:1.1% MEM:6.0% DISK_USED:6%
+[OK] Log grew while no manual monitor was run.
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: ====== SYSTEM MONITOR RESULT ======
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: [HEALTH CHECK]
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: Process agent-app-linux-x86... [OK] (PID: 2113,2120)
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: TCP 15034 LISTEN... [OK]
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: Firewall... [OK] active (ufw)
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: [RESOURCE MONITORING]
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: CPU Usage : 1.1%
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: MEM Usage : 6.0%
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: DISK Used : 6%
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: [INFO] Log appended: /var/log/agent-app/monitor.log

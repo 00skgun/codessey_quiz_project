@@ -1,0 +1,34 @@
+Sep 05 21:33:29 DESKTOP-6U6TM2O systemd[1]: Started Provided agent application for Linux assignment.
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: >>> Starting Agent Boot Sequence...
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: [1/5] Checking User Account               [OK]
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]:    ... Running as service user 'agent-admin' (uid=1001)
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: [2/5] Verifying Environment Variables     [FAIL]
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]:    >>> Key Path Mismatch. Expected: /home/agent-admin/agent-app/api_keys
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: [3/5] Checking Required Files             [FAIL]
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]:    >>> Skipped due to previous critical failure.
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: [4/5] Checking Port Availability          [FAIL]
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]:    >>> Skipped due to previous critical failure.
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: [5/5] Verifying Log Permission            [FAIL]
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]:    >>> Skipped due to previous critical failure.
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: --------------------------------------------------
+Sep 05 21:33:29 DESKTOP-6U6TM2O run-app.sh[391]: System Boot Failed. Process Terminated.
+Sep 05 21:33:30 DESKTOP-6U6TM2O systemd[1]: agent-app.service: Main process exited, code=exited, status=1/FAILURE
+Sep 05 21:33:30 DESKTOP-6U6TM2O systemd[1]: agent-app.service: Failed with result 'exit-code'.
+Sep 05 21:38:36 DESKTOP-6U6TM2O systemd[1]: Started Provided agent application for Linux assignment.
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[298]: [INFO] Provided binary compatibility: AGENT_KEY_PATH=/home/agent-admin/agent-app/api_keys (directory)
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: >>> Starting Agent Boot Sequence...
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: [1/5] Checking User Account               [OK]
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]:    ... Running as service user 'agent-admin' (uid=1001)
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: [2/5] Verifying Environment Variables     [OK]
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]:    ... All required Envs correct
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: [3/5] Checking Required Files             [FAIL]
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]:    >>> Missing File: secret.key
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]:    >>>    (Expected location: /home/agent-admin/agent-app/api_keys/secret.key)
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: [4/5] Checking Port Availability          [FAIL]
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]:    >>> Skipped due to previous critical failure.
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: [5/5] Verifying Log Permission            [FAIL]
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]:    >>> Skipped due to previous critical failure.
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: --------------------------------------------------
+Sep 05 21:38:36 DESKTOP-6U6TM2O run-app.sh[376]: System Boot Failed. Process Terminated.
+Sep 05 21:38:36 DESKTOP-6U6TM2O systemd[1]: agent-app.service: Main process exited, code=exited, status=1/FAILURE
+Sep 05 21:38:36 DESKTOP-6U6TM2O systemd[1]: agent-app.service: Failed with result 'exit-code'.

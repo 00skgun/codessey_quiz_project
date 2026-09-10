@@ -1,0 +1,113 @@
+2026-09-05T21:40:48+09:00
+/tmp/tmp.20tyjr5D6E: parsed OK
+[OK] Accounts, groups, ACLs, app, environment and scripts installed.
+Next: configure SSH/UFW in README, then run the app as agent-admin.
+[OK] admin/dev read + write: /home/agent-admin/agent-app/upload_files (default ACL inherits even with umask 077)
+[OK] admin/dev read + write: /home/agent-admin/agent-app/api_keys (default ACL inherits even with umask 077)
+[OK] admin/dev read + write: /var/log/agent-app (default ACL inherits even with umask 077)
+[OK] agent-test can read/write upload_files
+[OK] agent-test denied read/write: /home/agent-admin/agent-app/api_keys
+[OK] agent-test denied read/write: /var/log/agent-app
+agent-dev agent-core 750 /home/agent-admin/agent-app/bin/monitor.sh
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Firewall is active and enabled on system startup
+Synchronizing state of ssh.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable ssh
+port 20022
+permitrootlogin no
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                        
+LISTEN 0      128          0.0.0.0:20022      0.0.0.0:*    users:(("sshd",pid=2047,fd=3))
+LISTEN 0      128             [::]:20022         [::]:*    users:(("sshd",pid=2047,fd=4))
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+20022/tcp                  ALLOW IN    Anywhere                  
+15034/tcp                  ALLOW IN    Anywhere                  
+20022/tcp (v6)             ALLOW IN    Anywhere (v6)             
+15034/tcp (v6)             ALLOW IN    Anywhere (v6)             
+
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2113]: [INFO] Provided binary compatibility: AGENT_KEY_PATH=/home/agent-admin/agent-app/api_keys (directory)
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: >>> Starting Agent Boot Sequence...
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [1/5] Checking User Account               [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Running as service user 'agent-admin' (uid=1001)
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [2/5] Verifying Environment Variables     [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... All required Envs correct
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [3/5] Checking Required Files             [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Verified 'secret.key' with correct key string.
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [4/5] Checking Port Availability          [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Port 15034 is available.
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: [5/5] Verifying Log Permission            [OK]
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]:    ... Log directory is writable: /var/log/agent-app
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: ------------------------------------------------------------
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: All Boot Checks Passed!
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: Agent READY
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] [SafetyGuard] Process priority lowered (nice=10).
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] Agent listening at port 15034
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] === Agent Worker Started ===
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO]    > Cycle: 0 -> 256MB/Lv10 -> 0
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,847 [INFO] --- Step Info: Mode=UP, CPU Lv=1, Mem=0MB ---
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,862 [INFO] [Memory] Increasing... (+25 MB) Total: 25 MB
+Sep 05 21:40:56 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:56,862 [INFO] [CPU] Occupy core for 1s (Level 1)
+Sep 05 21:40:58 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:58,869 [INFO] --- Step Info: Mode=UP, CPU Lv=2, Mem=25MB ---
+Sep 05 21:40:58 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:58,897 [INFO] [Memory] Increasing... (+25 MB) Total: 50 MB
+Sep 05 21:40:58 DESKTOP-6U6TM2O run-app.sh[2120]: 2026-09-05 21:40:58,898 [INFO] [CPU] Occupy core for 2s (Level 2)
+====== SYSTEM MONITOR RESULT ======
+[HEALTH CHECK]
+Process agent-app-linux-x86... [OK] (PID: 2113,2120)
+TCP 15034 LISTEN... [OK]
+Firewall... [OK] active (ufw)
+[RESOURCE MONITORING]
+CPU Usage : 1.1%
+MEM Usage : 4.8%
+DISK Used : 6%
+[INFO] Log appended: /var/log/agent-app/monitor.log
+Synchronizing state of cron.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable cron
+* * * * * /bin/bash /home/agent-admin/agent-app/bin/monitor.sh 2>&1 | /usr/bin/logger -t agent-monitor # agent-app-monitor-managed
+BEFORE (no manual monitor execution during the following 70 seconds)
+2026-09-05T21:41:01+09:00
+1 /var/log/agent-app/monitor.log
+[2026-09-05 21:41:01] PID:2113,2120 CPU:1.1% MEM:4.8% DISK_USED:6%
+AFTER
+2026-09-05T21:42:11+09:00
+2 /var/log/agent-app/monitor.log
+[2026-09-05 21:41:01] PID:2113,2120 CPU:1.1% MEM:4.8% DISK_USED:6%
+[2026-09-05 21:42:02] PID:2113,2120 CPU:1.1% MEM:6.0% DISK_USED:6%
+[OK] Log grew while no manual monitor was run.
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: ====== SYSTEM MONITOR RESULT ======
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: [HEALTH CHECK]
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: Process agent-app-linux-x86... [OK] (PID: 2113,2120)
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: TCP 15034 LISTEN... [OK]
+Sep 05 21:42:01 DESKTOP-6U6TM2O agent-monitor[2450]: Firewall... [OK] active (ufw)
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: [RESOURCE MONITORING]
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: CPU Usage : 1.1%
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: MEM Usage : 6.0%
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: DISK Used : 6%
+Sep 05 21:42:02 DESKTOP-6U6TM2O agent-monitor[2450]: [INFO] Log appended: /var/log/agent-app/monitor.log
+====== STATISTICS REPORT ======
+[CPU]
+Average : 1.2%
+Maximum : 1.5% at 2026-09-05 21:42:13
+Minimum : 1.1% at 2026-09-05 21:41:01
+[Memory]
+Average : 5.5%
+Maximum : 6.0% at 2026-09-05 21:42:02
+Minimum : 4.8% at 2026-09-05 21:41:01
+[Disk]
+Average : 6.0%
+Maximum : 6.0% at 2026-09-05 21:41:01
+Minimum : 6.0% at 2026-09-05 21:41:01
+[Samples]
+Data Points: 3 samples
+[OK] Prepared assignment applied. Review the captured evidence before submission.

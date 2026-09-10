@@ -1,0 +1,10 @@
+====== SYSTEM MONITOR RESULT ======
+[HEALTH CHECK]
+Process agent-app-linux-x86... [OK] (PID: 2113,2120)
+TCP 15034 LISTEN... [OK]
+Firewall... [OK] active (ufw)
+[RESOURCE MONITORING]
+CPU Usage : 1.1%
+MEM Usage : 4.8%
+DISK Used : 6%
+[INFO] Log appended: /var/log/agent-app/monitor.log

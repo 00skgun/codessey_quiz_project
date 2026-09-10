@@ -1,0 +1,1 @@
+* * * * * /bin/bash /home/agent-admin/agent-app/bin/monitor.sh 2>&1 | /usr/bin/logger -t agent-monitor # agent-app-monitor-managed
