@@ -561,7 +561,7 @@ Bye.
 
 첫 커밋을 만들면 main과 HEAD가 그 hash를 가리킵니다. 다시 INIT을 실행하면 기존 데이터를 지우지 않고 오류를 반환합니다.
 
-**확인:** 9절의 초기화 출력과 `test_initialization_and_case_insensitive_commands`에서 확인합니다.
+**코드 참고:** `MiniGit.__init__()`, `head`, `initialize()`, `create_commit()` · 확인: `test_initialization_and_case_insensitive_commands`
 
 </details>
 
@@ -570,7 +570,7 @@ Bye.
 
 **답변:** `BRANCH`는 현재 HEAD의 hash를 새 브랜치 이름에 연결하고, `SWITCH`는 `current_branch`를 변경합니다. `COMMIT`은 전환한 브랜치의 기존 HEAD를 부모로 저장한 뒤 그 브랜치의 포인터만 새 hash로 바꿉니다. 다른 브랜치의 포인터는 그대로 유지되므로 각 브랜치에서 독립적으로 작업할 수 있습니다.
 
-**확인:** 9절에서는 feature가 `00000003`, main이 `00000004`를 가리킵니다. 자동 테스트 `test_branch_divergence_and_log`는 각 브랜치 포인터와 부모 관계를 직접 검사합니다.
+**코드 참고:** `MiniGit.execute()`의 `BRANCH`·`SWITCH`·`COMMIT`, `create_commit()` · 확인: `test_branch_divergence_and_log`
 
 </details>
 
@@ -579,7 +579,7 @@ Bye.
 
 **답변:** 옵션 없는 `LOG`는 `topological_order()`의 Kahn 알고리즘을 사용합니다. 각 커밋의 아직 처리하지 않은 부모 수를 세고, 이 수가 0인 커밋만 출력 큐에 넣습니다. 따라서 모든 부모가 출력된 뒤에만 자식이 출력됩니다. 현재 브랜치뿐 아니라 저장소 전체를 대상으로 합니다.
 
-**확인:** 시연의 기본 로그 순서는 `00000001`, `00000002`, `00000004`, `00000003`입니다. 이는 생성 순서와 다르지만 부모 우선 조건을 만족합니다. 날짜·작성자 옵션 로그는 별도의 키 정렬입니다.
+**코드 참고:** `topological_order()`, `MiniGit.execute()`의 `LOG` · 확인: `test_branch_divergence_and_log`
 
 </details>
 
@@ -588,7 +588,7 @@ Bye.
 
 **답변:** 커밋과 부모의 연결을 양방향으로 저장하고, 목적지에서 BFS를 수행하여 최소 간선 수를 구합니다. 출발점에서 목적지까지 거리가 1씩 줄어드는 이웃을 따라가면 최단 경로가 됩니다. 여러 후보가 있으면 `hash1->hash2->...` 경로 문자열의 사전순이 가장 작은 결과를 선택합니다. 두 커밋이 모두 존재하지만 연결되지 않았을 때 `No path`를 출력합니다.
 
-**확인:** 시연의 `path 00000003 00000004`는 `00000003->00000002->00000001->00000004`입니다. `path 00000001 00000005`는 `No path`이고, 존재하지 않는 hash는 `Unknown commit` 오류입니다. 복수 최단 경로는 `test_shortest_path_lexicographic_tie`에서 검증합니다.
+**코드 참고:** `shortest_path()`, `create_commit()`의 `neighbors`, `execute()`의 `PATH` · 확인: `test_shortest_path_lexicographic_tie`
 
 </details>
 
@@ -597,7 +597,7 @@ Bye.
 
 **답변:** `ancestor_hashes()`에서 시작 커밋의 부모들을 스택에 넣고 반복형 DFS를 수행합니다. 방문한 각 노드의 부모도 계속 스택에 넣으므로 직접 부모뿐 아니라 그 위의 모든 조상까지 탐색합니다. 방문 집합으로 중복을 제거하고 시작 커밋 자체는 제외합니다.
 
-**확인:** `ancestors 00000003`은 `00000001`과 `00000002`를 출력합니다. 공유 조상 및 1,500개 커밋의 긴 이력도 자동 테스트로 확인합니다.
+**코드 참고:** `ancestor_hashes()`, `MiniGit.execute()`의 `ANCESTORS` · 확인: `test_topological_order_and_shared_ancestors`
 
 </details>
 
@@ -606,7 +606,7 @@ Bye.
 
 **답변:** 키워드 검색은 메시지를 소문자·공백 기준 토큰으로 색인한 `keywords`를, 작성자 검색은 이름 전체를 키로 저장한 `authors`를 조회합니다. 전체 커밋을 순회하지 않고 일치하는 hash만 가져옵니다. 날짜·작성자 정렬은 직접 구현한 `merge_sort()`에 각각 timestamp와 author를 비교 키로 전달하며, 오름차순으로 출력합니다. 동률이면 등록 순서를 유지합니다.
 
-**확인:** 시연에서 `search LOGIN`, `search "add feature"`, `search --author="Alice Kim"`, 두 LOG 옵션을 실행합니다. 한 세션의 작성자는 동일하므로 서로 다른 작성자 정렬은 `test_sort_options`, 복수 작성자 역색인은 `test_index_authors_and_punctuation`에서 검증합니다.
+**코드 참고:** `InvertedIndex`, `merge_sort()`, `MiniGit.execute()`의 `SEARCH`·옵션 `LOG` · 확인: `test_sort_options`
 
 </details>
 
@@ -619,6 +619,8 @@ Bye.
 
 이렇게 하면 브랜치 포인터와 HEAD를 따로 갱신하다가 서로 어긋나는 문제를 줄일 수 있습니다. 검색 데이터는 `InvertedIndex`, 경로 탐색용 양방향 관계는 `neighbors`로 분리했습니다.
 
+**코드 참고:** `MiniGit.__init__()`, `head`, `Commit`, `InvertedIndex`
+
 </details>
 
 <details>
@@ -627,6 +629,8 @@ Bye.
 **답변:** Python `dict`에서 커밋 hash를 키, `Commit` 객체를 값으로 사용하여 평균 O(1)에 조회합니다. 커밋 식별자는 증가 카운터를 16진수 문자열로 변환하므로 같은 세션에서 같은 식별자를 다시 만들지 않습니다. 8자리를 넘어도 값을 잘라내지 않고, 재초기화도 거부합니다.
 
 여기서 **커밋 식별자가 같은 문제**와 **dict 내부 해시 충돌**은 다릅니다. 전자는 카운터로 예방하고, 후자는 Python dict가 키 동등성 검사와 내부 충돌 처리로 구분합니다. 따라서 서로 다른 문자열의 내부 해시가 충돌해도 같은 커밋으로 덮어쓰는 것은 아닙니다. 현재 식별자는 암호학적 해시가 아닙니다.
+
+**코드 참고:** `MiniGit.__init__()`의 `commits`·`counter`, `create_commit()`
 
 </details>
 
@@ -637,6 +641,8 @@ Bye.
 
 따라서 COMMIT 명령이 정상 종료된 직후부터 새 커밋을 검색할 수 있습니다. 현재는 단일 프로세스의 순차 REPL이며, 동시 쓰기나 영속 저장을 위한 트랜잭션까지 구현한 것은 아닙니다.
 
+**코드 참고:** `MiniGit.create_commit()`, `InvertedIndex.add()`·`search()`
+
 </details>
 
 <details>
@@ -646,6 +652,8 @@ Bye.
 
 덕분에 REPL 없이 작은 그래프만 넣어 알고리즘을 테스트할 수 있습니다. 서로 다른 탐색을 하나의 함수로 억지로 합치기보다, 각 알고리즘을 독립적으로 재사용하도록 구성했습니다.
 
+**코드 참고:** `topological_order()`, `shortest_path()`, `ancestor_hashes()`, `format_commits()`
+
 </details>
 
 <details>
@@ -654,6 +662,8 @@ Bye.
 **답변:** 주요 클래스와 함수의 docstring에는 역할, 입력·반환의 의미 또는 핵심 동작 규칙을 적었습니다. 예를 들어 `ancestor_hashes()`에는 반복형 DFS와 자신 제외 규칙을, `merge_sort()`에는 비교 키와 안정성을 설명했습니다. 주석은 코드만으로 의도가 바로 드러나지 않는 부분에 작성했습니다.
 
 역색인에서 작은 후보 집합부터 교집합을 계산하는 이유와, PATH 동률 비교에서 구분자를 포함하는 이유가 그 예입니다. 전체 처리 과정과 시간복잡도는 README에서 보충합니다.
+
+**코드 참고:** `main.py` 모듈 상단과 각 클래스·함수 선언 바로 아래의 `"""..."""`
 
 </details>
 
@@ -666,6 +676,8 @@ Bye.
 
 현재 구현은 새 커밋에서 기존 HEAD로만 간선을 추가하고 기존 노드를 불변으로 유지해 사이클을 예방합니다. Kahn 알고리즘은 전체 노드를 처리하지 못하면 `Invalid commit graph`를 발생시킵니다. 조상 탐색의 방문 집합은 중복 방문을 막지만, 방문 집합이 있다는 것만으로 잘못된 그래프가 정상적인 커밋 이력이 되는 것은 아닙니다.
 
+**코드 참고:** `MiniGit.create_commit()`, `topological_order()`, `ancestor_hashes()`
+
 </details>
 
 <details>
@@ -674,6 +686,8 @@ Bye.
 **답변:** Kahn 위상 정렬을 적용했습니다. 저장된 간선은 자식에서 부모로 향하지만, 출력 계산에서는 부모에서 자식으로 향하는 임시 목록을 만들고 각 커밋의 부모 수를 진입 차수로 사용합니다. 부모 없는 노드부터 FIFO 큐로 처리하고, 자식의 남은 부모 수가 0이 될 때만 큐에 넣습니다.
 
 각 노드와 간선을 한 번씩 처리하므로 O(V + E) 시간입니다. 단순 timestamp 정렬은 시각이 같거나 시스템 시간이 바뀌면 부모 우선을 보장하지 못합니다.
+
+**코드 참고:** `topological_order()`, `MiniGit.execute()`의 옵션 없는 `LOG`
 
 </details>
 
@@ -684,6 +698,8 @@ Bye.
 
 무방향 연결은 과제에서 정한 PATH의 정의입니다. 다른 브랜치 사이를 이동하려면 한 커밋에서 공통 조상으로 올라간 뒤 다른 자식으로 내려가는 것도 허용해야 합니다. 커밋 DAG 자체의 부모 방향을 없앤 것이 아니라, PATH 전용 `neighbors`에서만 부모·자식 양쪽을 이웃으로 보관했습니다. 목적지 기준 거리 계산 뒤 사전순으로 경로를 복원하여 동률 규칙도 만족시킵니다.
 
+**코드 참고:** `shortest_path()`, `MiniGit.create_commit()`의 `neighbors`
+
 </details>
 
 <details>
@@ -692,6 +708,8 @@ Bye.
 **답변:** 상향식 병합 정렬을 직접 구현했습니다. 각 단계에서 전체 N개 원소를 병합하고 구간 길이를 두 배로 늘리므로 단계 수가 약 log₂N입니다. 최선·평균·최악 시간복잡도는 모두 O(N log N), 보조 공간은 O(N)입니다. 재귀는 사용하지 않습니다.
 
 키가 같을 때 왼쪽 구간의 원소를 먼저 선택하는 `<=` 비교를 사용하므로 안정 정렬입니다. 날짜나 작성자가 같으면 기존 등록 순서가 보존됩니다. `key` 함수만 바꿔 여러 정렬 기준에 재사용하며 `sorted()`나 `list.sort()`는 사용하지 않습니다.
+
+**코드 참고:** `merge_sort()`, `MiniGit.execute()`의 옵션 `LOG`
 
 </details>
 
@@ -703,6 +721,8 @@ Bye.
 일치 결과가 K개라면 단일 키 조회와 후보 복사는 평균 O(1 + K)이고, 현재 프로그램은 출력 정렬까지 포함하면 O(1 + K + K log K)입니다.
 
 검색 결과가 전체에 가까우면 출력 비용이 커서 항상 큰 차이가 나는 것은 아닙니다. 또한 빠른 검색 대신 색인 저장 메모리와 커밋 생성 시 토큰화 비용을 추가로 사용합니다. 여러 토큰 검색은 후보 집합의 교집합으로 처리합니다.
+
+**코드 참고:** `InvertedIndex.add()`·`search()`, `MiniGit.create_commit()`
 
 </details>
 
@@ -723,6 +743,8 @@ Bye.
 - 결과를 순차적으로 출력하면 거대한 출력 문자열을 한꺼번에 보관하는 메모리를 줄일 수 있습니다. 페이지 단위 출력은 인터페이스 요구사항 변경을 전제로 고려합니다.
 - 역색인이 커지면 압축된 정수 ID나 비트맵 같은 표현을 검토할 수 있습니다. 집합 연산 속도, 추가 구현 비용, 메모리 사용을 함께 비교해야 합니다.
 
+**코드 참고:** `topological_order()`, `shortest_path()`, `merge_sort()`, `InvertedIndex`, `format_commits()`
+
 </details>
 
 <details>
@@ -733,6 +755,8 @@ Bye.
 구현을 단순하게 바꾸려면 출발지에서 BFS를 시작하고 이웃을 `commits[current].parents`로 제한하면 됩니다. 최단 경로 동률 규칙도 그대로 유지해야 합니다.
 
 **현재의 목적지 기준 거리 계산 방식을 유지한다면 주의가 필요합니다.** 목적지 BFS는 원래 방향을 뒤집은 부모→자식 간선을 따라야 하고, 출발지에서 경로를 복원할 때는 원래의 자식→부모 간선만 따라야 합니다. 현재 `neighbors`를 단순히 부모 목록으로 교체하면서 목적지 BFS를 그대로 두면 도달 방향을 반대로 계산하게 됩니다.
+
+**코드 참고:** `shortest_path()`, `MiniGit.create_commit()`의 `parents`·`neighbors`
 
 </details>
 
@@ -747,6 +771,8 @@ Bye.
 
 두 조건이 충돌할 수 있다는 점도 명확히 해야 합니다. 예를 들어 부모 작성자가 Zoe이고 자식이 Alice이면 전역적인 이름 오름차순과 부모 우선은 동시에 불가능합니다. 따라서 **부모 우선은 반드시 지키고, 현재 출력 가능한 후보 사이에서 작성자 순서를 적용한다**는 해석을 요구자와 합의해야 합니다.
 
+**코드 참고:** 현재 `topological_order()`와 `merge_sort()`의 선택 기준을 비교
+
 </details>
 
 <details>
@@ -759,6 +785,8 @@ Bye.
 테스트에서는 생성기를 주입하거나 테스트 전용 고정 시드로 결과를 재현하고, 같은 후보가 연속 생성되는 충돌 상황도 검사하겠습니다. 일반 기능 테스트는 특정 hash 상수보다 생성 결과에서 받은 hash를 연결하여 검사하는 편이 좋습니다.
 
 디버깅 로그에는 생성된 hash와 부모 관계를 남겨야 합니다. 또한 hash 문자열이 바뀌면 복수 최단 경로 중 사전순으로 선택되는 경로도 달라질 수 있으므로, 동률 테스트는 통제된 hash로 구성해야 합니다.
+
+**코드 참고:** `MiniGit.create_commit()`, `Commit`, `shortest_path()`
 
 </details>
 
