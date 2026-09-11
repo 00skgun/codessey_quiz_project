@@ -4,7 +4,7 @@ from collections import deque
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import shlex
-from typing import Callable, Iterable, TypeVar
+from typing import Callable, Iterable, Optional, TypeVar
 
 
 T = TypeVar("T")
@@ -99,7 +99,7 @@ def topological_order(commits: dict[str, Commit]) -> list[Commit]:
 
 def shortest_path(
     neighbors: dict[str, set[str]], start: str, end: str
-) -> list[str] | None:
+) -> Optional[list[str]]:
     """역방향 BFS 거리와 탐욕 선택으로 사전순 최소인 최단 경로를 구한다."""
     distances = {end: 0}
     queue = deque([end])
@@ -141,16 +141,16 @@ class MiniGit:
     """저장소 상태, 브랜치 포인터, 커밋 생성과 명령 실행을 관리한다."""
 
     def __init__(self) -> None:
-        self.user: str | None = None
+        self.user: Optional[str] = None
         self.current_branch = "main"
-        self.branches: dict[str, str | None] = {}
+        self.branches: dict[str, Optional[str]] = {}
         self.commits: dict[str, Commit] = {}
         self.neighbors: dict[str, set[str]] = {}
         self.index = InvertedIndex()
         self.counter = 0
 
     @property
-    def head(self) -> str | None:
+    def head(self) -> Optional[str]:
         """현재 브랜치가 가리키는 커밋. 아직 커밋이 없으면 None이다."""
         return self.branches.get(self.current_branch)
 

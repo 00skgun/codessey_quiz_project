@@ -6,7 +6,7 @@
 
 | 실행 환경 | 설치 | 데이터 저장 | 구현 범위 |
 | --- | --- | --- | --- |
-| Python 3.10 이상 | 외부 패키지 불필요 | 메모리 — 종료 시 삭제 | 필수 과제만 구현 |
+| Python 3.9.0 이상 | 외부 패키지 불필요 | 메모리 — 종료 시 삭제 | 필수 과제만 구현 |
 
 ```powershell
 python main.py
@@ -28,7 +28,7 @@ python main.py
 
 ## 1. 실행 환경과 파일 구성
 
-- Python **3.10 이상**
+- Python **3.9.0 이상**
 - 외부 패키지 설치 불필요: Python 표준 라이브러리만 사용합니다.
 - 운영체제: Python 실행이 가능한 Windows, macOS, Linux
 
@@ -48,7 +48,9 @@ python --version
 python main.py
 ```
 
-Windows에서 `python` 대신 Python 런처를 사용하는 환경이라면 `py -3 main.py`로 실행할 수 있습니다. 실행한 인터프리터의 버전이 3.10 이상인지 확인하세요.
+Windows에서 `python` 대신 Python 런처를 사용하는 환경이라면 `py -3 main.py`로 실행할 수 있습니다. macOS에서는 `python3 main.py`로 실행하세요. 실행한 인터프리터의 버전이 3.9.0 이상인지 확인하세요.
+
+Python 3.9 호환을 위해 `None`을 허용하는 타입은 `Optional[...]`로 표기합니다. 예: `Optional[list[str]]`는 문자열 목록 또는 `None`을 뜻합니다.
 
 ```text
 Mini Git | INIT <user_name>으로 시작하세요. exit / quit로 종료합니다.
