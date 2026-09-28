@@ -30,6 +30,19 @@ def temporary_repository():
 
 
 class OutputTests(unittest.TestCase):
+    def test_commit_title_limit_and_single_line(self):
+        data = main.parse_output(json.dumps({'title': '가' * 80 + '\n제목', 'body': ['- 요약\n계속']}), 'commit')
+        self.assertEqual(len(data['title']), 72)
+        self.assertNotIn('\n', data['title'])
+        self.assertEqual(data['body'], ['요약 계속'])
+
+    def test_every_required_pr_section_rejects_empty_bullets(self):
+        for key in ['why', 'what', 'how_to_test']:
+            data = {'title': '제목', 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']}
+            data[key] = ['  ', '- ']
+            with self.subTest(key=key), self.assertRaises(main.AppError):
+                main.parse_output(json.dumps(data), 'pr')
+
     def test_pr_sections_and_title_limit(self):
         raw = json.dumps({'title': '가' * 100, 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']})
         data = main.parse_output(raw, 'pr')
@@ -86,6 +99,31 @@ class GitTests(unittest.TestCase):
 
 
 class APITests(unittest.TestCase):
+    def test_malformed_api_response_has_readable_error(self):
+        for data in [[], {'choices': []}, {'choices': [None]}, {'choices': [{'message': None}]}]:
+            response = MagicMock()
+            response.__enter__.return_value.read.return_value = json.dumps(data).encode()
+            with self.subTest(data=data), patch('main.urllib.request.build_opener') as build:
+                build.return_value.open.return_value = response
+                with self.assertRaises(main.AppError):
+                    main.call_api('https://example.com/chat', 'key', 'model', 0.2, 100, [])
+
+    def test_truncated_response_is_not_printed_as_success(self):
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = json.dumps(
+            {'choices': [{'finish_reason': 'length', 'message': {'content': '{'}}]}
+        ).encode()
+        with patch('main.urllib.request.build_opener') as build:
+            build.return_value.open.return_value = response
+            with self.assertRaisesRegex(main.AppError, '토큰 한도'):
+                main.call_api('https://example.com/chat', 'key', 'model', 0.2, 100, [])
+
+    def test_timeout_has_readable_error(self):
+        with patch('main.urllib.request.build_opener') as build:
+            build.return_value.open.side_effect = urllib.error.URLError(TimeoutError())
+            with self.assertRaisesRegex(main.AppError, '시간 초과'):
+                main.call_api('https://example.com/chat', 'key', 'model', 0.2, 100, [])
+
     def test_certificate_error_is_identified(self):
         with patch('main.urllib.request.build_opener') as build:
             build.return_value.open.side_effect = urllib.error.URLError(
@@ -118,6 +156,55 @@ class APITests(unittest.TestCase):
             with contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(main.main(['commit']), 0)
             api.assert_not_called()
+
+
+class CLITests(unittest.TestCase):
+    def test_missing_key_fails_without_request(self):
+        with patch.dict(os.environ, {'AI_API_KEY': '', 'AI_API_URL': 'https://example.com/chat', 'AI_MODEL': 'model'}):
+            with patch('main.collect_changes', return_value=(' M sample.py', '+change')), patch('main.call_api') as api:
+                errors = io.StringIO()
+                with contextlib.redirect_stderr(errors):
+                    self.assertEqual(main.main(['commit']), 1)
+                self.assertIn('AI_API_KEY 환경변수가 설정되지 않았습니다', errors.getvalue())
+                api.assert_not_called()
+
+    def test_commit_and_pr_from_git_to_terminal_with_mock_api(self):
+        previous = os.getcwd()
+        with temporary_repository() as directory:
+            try:
+                os.chdir(directory)
+                subprocess.run(['git', 'init', '-q'], check=True)
+                with open('sample.py', 'w') as stream:
+                    stream.write('print("hello")\n')
+                subprocess.run(['git', 'add', 'sample.py'], check=True)
+                for mode in ['commit', 'pr']:
+                    response = MagicMock()
+                    draft = {'title': 'feat: 인사 추가', 'body': ['sample.py에 인사 출력 추가'],
+                             'why': ['인사 출력 지원'], 'what': ['sample.py 추가'], 'how_to_test': ['py sample.py 실행']}
+                    response.__enter__.return_value.read.return_value = json.dumps(
+                        {'choices': [{'message': {'content': json.dumps(draft)}}]}
+                    ).encode()
+                    with self.subTest(mode=mode), patch.dict(os.environ, {
+                        'AI_API_KEY': 'test-key', 'AI_API_URL': 'https://example.com/chat', 'AI_MODEL': 'test-model'
+                    }), patch('main.urllib.request.build_opener') as build:
+                        build.return_value.open.return_value = response
+                        output, errors = io.StringIO(), io.StringIO()
+                        with contextlib.redirect_stdout(output), contextlib.redirect_stderr(errors):
+                            self.assertEqual(main.main([mode, '--temperature', '0.8', '--max-tokens', '2048']), 0)
+                        request = build.return_value.open.call_args.args[0]
+                        payload = json.loads(request.data)
+                        self.assertEqual(payload['temperature'], 0.8)
+                        self.assertEqual(payload['max_tokens'], 2048)
+                        self.assertIn('print', payload['messages'][1]['content'])
+                        self.assertIn('temperature=0.8, max_tokens=2048', errors.getvalue())
+                        self.assertIn('feat: 인사 추가', output.getvalue())
+                        if mode == 'pr':
+                            self.assertIn('--- PR Title ---', output.getvalue())
+                            for heading in ['Why', 'What', 'How to Test']:
+                                self.assertIn('## ' + heading + '\n- ', output.getvalue())
+                        build.return_value.open.assert_called_once()
+            finally:
+                os.chdir(previous)
 
 
 if __name__ == '__main__':
