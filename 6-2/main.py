@@ -16,6 +16,9 @@ class AppError(Exception):
     pass
 
 
+TITLE_TYPES = ('feat', 'fix', 'docs', 'refactor', 'test', 'chore', 'perf', 'style', 'build', 'ci', 'revert')
+
+
 def git(*args):
     try:
         result = subprocess.run(
@@ -86,6 +89,11 @@ def make_messages(mode, context):
         '추정임을 명시한다. 테스트를 실행했다고 주장하지 말고 검증할 방법을 제안한다. '
         '생략된 변경이나 새 파일 목록만 보고 구현 내용을 꾸며내지 않는다. '
         '커밋 본문은 핵심 변경 사항 1~2개를 간결하게 요약한다. '
+        '커밋과 PR 제목은 반드시 type: 설명 형식으로 작성한다. '
+        f'type은 {", ".join(TITLE_TYPES)} 중 변경 내용에 맞게 선택한다. '
+        '새 기능은 feat, 버그 수정은 fix, 문서만 수정하면 docs, '
+        '동작 변경 없는 구조 개선은 refactor, 테스트 변경은 test를 사용한다. '
+        '예: docs: 평가 시연 순서 추가. scope와 느낌표는 사용하지 않는다. '
         '커밋 제목은 50자 이내 권장, 최대 72자. PR 제목은 최대 80자. '
         '각 배열에 비어 있지 않은 문장을 1개 이상 넣는다. 마크다운 코드블록 없이 다음 구조의 '
         f'JSON 객체만 출력한다: {schema}'
@@ -159,6 +167,10 @@ def parse_output(raw, mode):
     title = ' '.join(data['title'].split())
     if not title:
         raise AppError('AI 결과의 제목이 비어 있습니다.')
+    match = re.fullmatch(r'(' + '|'.join(TITLE_TYPES) + r')\s*:\s*(\S.*)', title, re.IGNORECASE)
+    if not match:
+        raise AppError('제목은 feat: 설명, fix: 설명, docs: 설명 등의 type: 설명 형식이어야 합니다.')
+    title = f'{match.group(1).lower()}: {match.group(2)}'
     limit = 72 if mode == 'commit' else 80
     if len(title) > limit:
         title = title[:limit - 1].rstrip() + '…'

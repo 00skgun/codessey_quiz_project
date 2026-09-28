@@ -31,20 +31,20 @@ def temporary_repository():
 
 class OutputTests(unittest.TestCase):
     def test_commit_title_limit_and_single_line(self):
-        data = main.parse_output(json.dumps({'title': '가' * 80 + '\n제목', 'body': ['- 요약\n계속']}), 'commit')
+        data = main.parse_output(json.dumps({'title': 'feat: ' + '가' * 80 + '\n제목', 'body': ['- 요약\n계속']}), 'commit')
         self.assertEqual(len(data['title']), 72)
         self.assertNotIn('\n', data['title'])
         self.assertEqual(data['body'], ['요약 계속'])
 
     def test_every_required_pr_section_rejects_empty_bullets(self):
         for key in ['why', 'what', 'how_to_test']:
-            data = {'title': '제목', 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']}
+            data = {'title': 'feat: 제목', 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']}
             data[key] = ['  ', '- ']
             with self.subTest(key=key), self.assertRaises(main.AppError):
                 main.parse_output(json.dumps(data), 'pr')
 
     def test_pr_sections_and_title_limit(self):
-        raw = json.dumps({'title': '가' * 100, 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']})
+        raw = json.dumps({'title': 'feat: ' + '가' * 100, 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']})
         data = main.parse_output(raw, 'pr')
         self.assertEqual(len(data['title']), 80)
         output = main.render_output(data, 'pr')
@@ -58,6 +58,20 @@ class OutputTests(unittest.TestCase):
 
     def test_commit_optional_body(self):
         self.assertEqual(main.parse_output('{"title":"fix: 오류 수정"}', 'commit')['body'], [])
+
+    def test_title_prefix_normalized_for_commit_and_pr(self):
+        for mode in ['commit', 'pr']:
+            for kind in main.TITLE_TYPES:
+                draft = {'title': kind.upper() + ' :설명', 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']}
+                with self.subTest(mode=mode, kind=kind):
+                    self.assertEqual(main.parse_output(json.dumps(draft), mode)['title'], kind + ': 설명')
+
+    def test_missing_or_invalid_title_prefix_rejected(self):
+        for mode in ['commit', 'pr']:
+            for title in ['설명만 있는 제목', 'feature: 설명', 'feat:', 'docs:  ', 'feat(api): 설명']:
+                draft = {'title': title, 'why': ['배경'], 'what': ['변경'], 'how_to_test': ['확인']}
+                with self.subTest(mode=mode, title=title), self.assertRaisesRegex(main.AppError, 'type: 설명'):
+                    main.parse_output(json.dumps(draft), mode)
 
     def test_safe_mode_masks_and_limits(self):
         text = 'api_key="private-value"\ntest@example.com\nsk-example123\n' + 'changed\n' * 250
