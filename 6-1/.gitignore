@@ -1,0 +1,6 @@
+*.pem
+*.ppk
+.env
+.env.*
+tmp/
+__pycache__/
