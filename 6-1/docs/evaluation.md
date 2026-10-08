@@ -12,7 +12,7 @@
 
 이 구성에서 서브넷의 인터넷 경로, EC2의 퍼블릭 IP, 보안 그룹의 허용 규칙이 함께 있어야 인터넷과 통신할 수 있다. 이름에 public을 붙이는 것만으로 인터넷 접근이 가능해지는 것은 아니다. [AWS 인터넷 게이트웨이 설명](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 
-**근거:** [README 구성표](../README.md#구성), 아래 아키텍처, 외부 브라우저 접속 및 서버의 외부 요청 성공 캡처. 정리할 때 기록한 리소스 ID도 [정리 체크리스트](cleanup-checklist.md)에 남겼다.
+**근거:** [README 네트워크 구성](../README.md#2-네트워크-구성), 아래 아키텍처, 외부 브라우저 접속 및 서버의 외부 요청 성공 캡처. 정리할 때 기록한 리소스 ID도 [정리 체크리스트](cleanup-checklist.md)에 남겼다.
 
 ![실습 VPC·서브넷·IGW·EC2와 인터넷 경로](architecture.png)
 
@@ -35,7 +35,7 @@
 
 HTTPS 서버와 DB를 구성하지 않았으므로 443, 3306, 5432 등의 인바운드를 추가하지 않았다. 초기 설정에서 SSH 소스를 전체 IPv4로 선택했던 부분은 배포 전에 내 IP로 변경했다. 보안 그룹은 허용 규칙을 추가하는 방식이므로 허용하지 않은 인바운드는 기본적으로 통과하지 않는다. [AWS 보안 그룹 규칙](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html)
 
-**근거:** [README 접근 제어 설정](../README.md#네트워크-흐름과-접근-제어)과 아래 원본 캡처. 2026-10-07 14:42에 저장한 EC2 생성 시 설정 화면에서 SSH 22의 `/32` 제한과 HTTP 80의 전체 IPv4 허용을 확인할 수 있다. 로컬 PC의 SSH 접속과 외부 HTTP 접속도 확인했다.
+**근거:** [README 보안과 권한](../README.md#3-보안과-권한)과 아래 원본 캡처. 2026-10-07 14:42에 저장한 EC2 생성 시 설정 화면에서 SSH 22의 `/32` 제한과 HTTP 80의 전체 IPv4 허용을 확인할 수 있다. 로컬 PC의 SSH 접속과 외부 HTTP 접속도 확인했다.
 
 ![EC2 생성 시 SSH 22는 내 IP로 제한하고 HTTP 80은 전체 IPv4에 허용한 설정](security-group-rules.png)
 
