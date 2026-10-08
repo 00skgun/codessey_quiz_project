@@ -1,186 +1,142 @@
 #!/usr/bin/env bash
-# Linux system monitor. Run as agent-admin; automation is Bash + Linux utilities.
+# 필수 과제: 상태 확인 → 자원 수집 → 경고 → 로그 기록/회전.
 
-monitor_error() { printf '[ERROR] %s\n' "$*" >&2; }
+error() { printf '[ERROR] %s\n' "$*" >&2; }
 
-find_app_pids() {
-    local entry pid executable arg candidate
-    local -a argv
-    for entry in /proc/[0-9]*/cmdline; do
-        pid=${entry#/proc/}; pid=${pid%/cmdline}
-        [[ -r $entry ]] || continue
-        executable=$(readlink -f "/proc/$pid/exe" 2>/dev/null) || continue
-        if [[ $executable == "$AGENT_APP_PATH" ]]; then
-            printf '%s\n' "$pid"
-            continue
-        fi
-        case ${executable##*/} in python*|pypy*) ;; *) continue ;; esac
-        argv=()
-        mapfile -d '' -t argv < "$entry" 2>/dev/null || continue
-        # Match the Python script argument, not a substring in a grep/shell command.
-        for arg in "${argv[@]:1}"; do
-            [[ $arg == -c || $arg == -m ]] && break
-            [[ $arg == *.py ]] || continue
-            candidate=$arg
-            [[ $arg == /* ]] || candidate="/proc/$pid/cwd/$arg"
-            candidate=$(readlink -f -- "$candidate" 2>/dev/null) || break
-            [[ $candidate != "$AGENT_APP_PATH" ]] || printf '%s\n' "$pid"
-            break
-        done
+# 제공 바이너리는 run-app.sh가 절대 경로로 실행한다.
+# -f: 명령행 전체, -x: 전체 일치. 검색 명령 자체를 앱으로 오인하지 않는다.
+find_app_pids() { pgrep -f -x -- "$AGENT_APP_PATH"; }
+list_app_port() { ss -H -ltnp "sport = :$AGENT_PORT"; }
+
+health_check() {
+    local pids listeners pid matched=0
+    pids=$(find_app_pids) || { error 'App process is not running.'; return 1; }
+    [[ -n $pids ]] || { error 'App process is not running.'; return 1; }
+    listeners=$(list_app_port) || { error 'Cannot inspect TCP sockets.'; return 1; }
+    [[ -n $listeners ]] || { error "TCP $AGENT_PORT is not LISTENING."; return 1; }
+    # 다른 프로그램이 같은 포트를 차지한 경우도 성공으로 처리하지 않는다.
+    for pid in $pids; do
+        [[ $listeners != *"pid=$pid,"* ]] || matched=1
     done
+    (( matched )) || { error "TCP $AGENT_PORT is not owned by the app (or its PID is unreadable)."; return 1; }
+    APP_PIDS=${pids//$'\n'/,}
+    printf '[OK] Process PID:%s\n[OK] TCP %s LISTEN\n' "$APP_PIDS" "$AGENT_PORT"
 }
 
-listener_snapshot() { ss -H -ltnp "sport = :$AGENT_PORT"; }
+ufw_status() { sudo -n /usr/sbin/ufw status; }
+
+check_firewall() {
+    local status
+    if ! status=$(ufw_status 2>&1); then
+        printf '[WARNING] Cannot query UFW; check the read-only sudo rule.\n'
+    elif [[ $status == *'Status: active'* ]]; then
+        printf '[OK] Firewall active (UFW)\n'
+    else
+        printf '[WARNING] Firewall inactive (UFW)\n'
+    fi
+    # 방화벽 경고는 치명적 오류가 아니다.
+    return 0
+}
 
 read_cpu_counters() {
-    local label user nice system idle iowait irq softirq steal rest
-    read -r label user nice system idle iowait irq softirq steal rest < /proc/stat
-    [[ $label == cpu ]] || return 1
-    # guest/guest_nice are already included in user/nice; do not count them twice.
-    printf '%s %s\n' "$((user + nice + system + idle + iowait + irq + softirq + steal))" "$((idle + iowait))"
+    # user, nice, system, idle, iowait, irq, softirq, steal만 합산.
+    # guest 항목은 user 등에 이미 들어 있어 중복 합산하지 않는다.
+    awk '/^cpu / {for(i=2;i<=9;i++) total+=$i; printf "%.0f %.0f\n",total,$5+$6; exit}' /proc/stat
 }
 
-cpu_percent() {
-    local total_before=$1 idle_before=$2 total_after=$3 idle_after=$4
-    awk -v t="$((total_after - total_before))" -v i="$((idle_after - idle_before))" 'BEGIN {
-        if (t <= 0 || i < 0 || i > t) exit 1
-        printf "%.1f\n", 100 * (t-i) / t
+cpu_from_counters() {
+    # 두 시점의 누적값 차이로 1초 구간의 사용률을 구한다.
+    awk -v total="$(($3-$1))" -v idle="$(($4-$2))" 'BEGIN {
+        if(total<=0 || idle<0 || idle>total) exit 1
+        printf "%.1f\n",100*(total-idle)/total
     }'
 }
 
-memory_percent() {
+cpu_usage() {
+    local total1 idle1 total2 idle2
+    read -r total1 idle1 < <(read_cpu_counters) || return 1
+    sleep 1
+    read -r total2 idle2 < <(read_cpu_counters) || return 1
+    cpu_from_counters "$total1" "$idle1" "$total2" "$idle2"
+}
+
+memory_usage() {
     awk '/^MemTotal:/ {t=$2} /^MemAvailable:/ {a=$2; found=1}
-        END {if(t<=0 || !found || a<0 || a>t) exit 1; printf "%.1f\n", 100*(t-a)/t}' /proc/meminfo
+        END {if(t<=0 || !found || a<0 || a>t) exit 1; printf "%.1f\n",100*(t-a)/t}' /proc/meminfo
 }
 
-disk_percent() { df -P / | awk 'NR==2 {gsub(/%/, "", $5); print $5}'; }
+disk_usage() { df -P / | awk 'NR==2 {gsub(/%/,"",$5); print $5}'; }
 
-firewall_status() {
-    local result
-    if command -v ufw >/dev/null 2>&1; then
-        if (( EUID == 0 )); then
-            result=$(ufw status 2>&1) || { printf 'unknown (ufw query failed)\n'; return; }
-        else
-            result=$(sudo -n /usr/sbin/ufw status 2>&1) || {
-                printf 'unknown (allow agent-admin to run only /usr/sbin/ufw status)\n'; return;
-            }
-        fi
-        if [[ $result == *'Status: active'* ]]; then printf 'active (ufw)\n'
-        else printf 'inactive (ufw)\n'; fi
-    elif command -v firewall-cmd >/dev/null 2>&1; then
-        if result=$(firewall-cmd --state 2>&1); then
-            [[ $result != running ]] || { printf 'active (firewalld)\n'; return; }
-            printf 'unknown (firewalld response)\n'
-        elif [[ $result == *'not running'* ]]; then printf 'inactive (firewalld)\n'
-        else printf 'unknown (firewalld query failed)\n'; fi
-    else
-        printf 'unknown (no supported firewall command)\n'
-    fi
-}
-
-warn_threshold() {
-    if awk -v actual="$2" -v limit="$3" 'BEGIN {exit !(actual > limit)}'; then
-        printf '[WARNING] %s threshold exceeded (%s%% > %s%%)\n' "$1" "$2" "$3"
+warn_if_over() {
+    if awk -v value="$2" -v limit="$3" 'BEGIN {exit !(value>limit)}'; then
+        printf '[WARNING] %s %s%% > %s%%\n' "$1" "$2" "$3"
     fi
     return 0
 }
 
-append_log() {
-    local line=$1 size=0 index
-    local max_bytes=$((10 * 1024 * 1024))
-    # Call while holding .monitor.lock. Ten files total: current + nine backups.
-    [[ ! -L $LOG_FILE ]] || { monitor_error 'Refusing a symlink log file'; return 1; }
+write_log() {
+    local line=$1 size=0 i
+    local max_bytes=$((10*1024*1024))
+    [[ ! -L $LOG_FILE ]] || { error 'Log must not be a symbolic link.'; return 1; }
     if [[ -e $LOG_FILE ]]; then
-        [[ -f $LOG_FILE ]] || { monitor_error 'Log path is not a regular file'; return 1; }
-        size=$(stat -c '%s' -- "$LOG_FILE") || return 1
+        [[ -f $LOG_FILE ]] || return 1
+        size=$(stat -c %s -- "$LOG_FILE") || return 1
     fi
+    # 새 줄을 더했을 때 10MiB를 초과하면 먼저 회전한다.
     if (( size + ${#line} + 1 > max_bytes )); then
-        for ((index=9; index>=1; index--)); do
-            [[ ! -L $LOG_FILE.$index ]] || { monitor_error 'Refusing a symlink backup'; return 1; }
-            [[ ! -e $LOG_FILE.$index || -f $LOG_FILE.$index ]] || return 1
-        done
         rm -f -- "$LOG_FILE.9" || return 1
-        for ((index=8; index>=1; index--)); do
-            if [[ -f $LOG_FILE.$index ]]; then
-                mv -- "$LOG_FILE.$index" "$LOG_FILE.$((index+1))" || return 1
+        for ((i=8;i>=1;i--)); do
+            if [[ -e $LOG_FILE.$i ]]; then
+                mv -- "$LOG_FILE.$i" "$LOG_FILE.$((i+1))" || return 1
             fi
         done
         mv -- "$LOG_FILE" "$LOG_FILE.1" || return 1
     fi
+    # 현재 로그 + .1~.9 = 총 10개. .1이 가장 최근의 백업이다.
     printf '%s\n' "$line" >> "$LOG_FILE" || return 1
 }
 
-monitor_run() (
-    # Subshell releases the lock even when returning early.
-    local pids listeners pid fw total_before idle_before total_after idle_after
-    local cpu mem disk line matched=0
-    [[ -d $AGENT_LOG_DIR && -w $AGENT_LOG_DIR ]] || {
-        monitor_error "Log directory is missing or not writable: $AGENT_LOG_DIR"; return 1;
-    }
+main() (
+    set -euo pipefail
+    export LC_ALL=C PATH=/usr/sbin:/usr/bin:/sbin:/bin
+    umask 0007
+    local script_dir config tool cpu mem disk value
+    script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+    config=$script_dir/../agent-env.sh
+    [[ ! -r $script_dir/agent-env.sh ]] || config=$script_dir/agent-env.sh
+    if [[ -r $config ]]; then source "$config"; fi
+    AGENT_HOME=${AGENT_HOME:-/home/agent-admin/agent-app}
+    AGENT_APP_PATH=${AGENT_APP_PATH:-$AGENT_HOME/agent-app-linux-x86}
+    AGENT_PORT=${AGENT_PORT:-15034}
+    AGENT_LOG_DIR=${AGENT_LOG_DIR:-/var/log/agent-app}
+    LOG_FILE=$AGENT_LOG_DIR/monitor.log
+    [[ $(uname -s) == Linux ]] || { error 'Linux is required.'; return 1; }
+    for tool in pgrep ss awk df stat flock date; do
+        command -v "$tool" >/dev/null || { error "Missing command: $tool"; return 1; }
+    done
+    [[ -d $AGENT_LOG_DIR && -w $AGENT_LOG_DIR ]] || { error 'Log directory is not writable.'; return 1; }
     [[ ! -L $AGENT_LOG_DIR/.monitor.lock ]] || return 1
-    exec 9>> "$AGENT_LOG_DIR/.monitor.lock" || return 1
-    if ! flock -n 9; then printf '[INFO] Another monitor is running; skipped.\n'; return 0; fi
+    exec 9>> "$AGENT_LOG_DIR/.monitor.lock"
+    if ! flock -n 9; then echo '[INFO] Another monitor is running; skipped.'; return 0; fi
+
     printf '====== SYSTEM MONITOR RESULT ======\n[HEALTH CHECK]\n'
-    pids=$(find_app_pids) || { monitor_error 'Cannot inspect processes'; return 1; }
-    [[ -n $pids ]] || { monitor_error "App is not running: $AGENT_APP_PATH"; return 1; }
-    pids=${pids//$'\n'/,}
-    printf 'Process %s... [OK] (PID: %s)\n' "${AGENT_APP_PATH##*/}" "$pids"
-    listeners=$(listener_snapshot) || { monitor_error 'Cannot inspect TCP listeners'; return 1; }
-    [[ -n $listeners ]] || { monitor_error "TCP $AGENT_PORT is not LISTENING"; return 1; }
-    # All app processes run as agent-admin, so ss can show their socket ownership.
-    local -a pid_list
-    IFS=, read -r -a pid_list <<< "$pids"
-    for pid in "${pid_list[@]}"; do
-        [[ $listeners != *"pid=$pid,"* ]] || matched=1
+    health_check || return 1
+    check_firewall
+    cpu=$(cpu_usage) || { error 'Cannot measure CPU.'; return 1; }
+    mem=$(memory_usage) || { error 'Cannot measure memory.'; return 1; }
+    disk=$(disk_usage) || { error 'Cannot measure root filesystem.'; return 1; }
+    for value in "$cpu" "$mem" "$disk"; do
+        [[ $value =~ ^[0-9]+([.][0-9]+)?$ ]] || { error 'Invalid measurement.'; return 1; }
     done
-    (( matched )) || { monitor_error "TCP $AGENT_PORT is not owned by the app (or PID is not visible)"; return 1; }
-    printf 'TCP %s LISTEN... [OK]\n' "$AGENT_PORT"
-    fw=$(firewall_status)
-    if [[ $fw == active* ]]; then printf 'Firewall... [OK] %s\n' "$fw"
-    else printf '[WARNING] Firewall: %s\n' "$fw"; fi
-    read -r total_before idle_before < <(read_cpu_counters)
-    [[ -n $total_before && -n $idle_before ]] || return 1
-    sleep 1
-    read -r total_after idle_after < <(read_cpu_counters)
-    [[ -n $total_after && -n $idle_after ]] || return 1
-    cpu=$(cpu_percent "$total_before" "$idle_before" "$total_after" "$idle_after") || {
-        monitor_error 'Invalid CPU sample'; return 1;
+    printf '[RESOURCES]\nCPU: %s%%\nMEM: %s%%\nDISK_USED: %s%%\n' "$cpu" "$mem" "$disk"
+    warn_if_over CPU "$cpu" 20
+    warn_if_over MEM "$mem" 10
+    warn_if_over DISK_USED "$disk" 80
+    write_log "[$(date '+%Y-%m-%d %H:%M:%S')] PID:$APP_PIDS CPU:$cpu% MEM:$mem% DISK_USED:$disk%" || {
+        error 'Cannot write or rotate monitor.log.'; return 1;
     }
-    mem=$(memory_percent) || { monitor_error 'Cannot read memory usage'; return 1; }
-    disk=$(disk_percent) || { monitor_error 'Cannot read root filesystem usage'; return 1; }
-    for line in "$cpu" "$mem" "$disk"; do
-        [[ $line =~ ^[0-9]+([.][0-9]+)?$ ]] || { monitor_error 'Invalid resource measurement'; return 1; }
-    done
-    printf '[RESOURCE MONITORING]\nCPU Usage : %s%%\nMEM Usage : %s%%\nDISK Used : %s%%\n' "$cpu" "$mem" "$disk"
-    warn_threshold CPU "$cpu" 20
-    warn_threshold MEM "$mem" 10
-    warn_threshold DISK_USED "$disk" 80
-    line="[$(date '+%Y-%m-%d %H:%M:%S')] PID:$pids CPU:$cpu% MEM:$mem% DISK_USED:$disk%"
-    append_log "$line" || { monitor_error "Cannot append log: $LOG_FILE"; return 1; }
     printf '[INFO] Log appended: %s\n' "$LOG_FILE"
 )
 
-monitor_main() {
-    set -uo pipefail
-    export LC_ALL=C PATH=/usr/sbin:/usr/bin:/sbin:/bin
-    umask 0007
-    local script_dir dependency
-    script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-    if [[ -f $script_dir/../agent-env.sh ]]; then source "$script_dir/../agent-env.sh"; fi
-    : "${AGENT_HOME:=/home/agent-admin/agent-app}"
-    : "${AGENT_APP_PATH:=$AGENT_HOME/agent_app.py}"
-    : "${AGENT_PORT:=15034}"
-    : "${AGENT_LOG_DIR:=/var/log/agent-app}"
-    LOG_FILE=$AGENT_LOG_DIR/monitor.log
-    [[ $AGENT_PORT =~ ^[0-9]+$ ]] && (( AGENT_PORT >= 1 && AGENT_PORT <= 65535 )) || {
-        monitor_error 'Invalid AGENT_PORT'; return 1;
-    }
-    [[ $(uname -s) == Linux ]] || { monitor_error 'Run this script on Linux'; return 1; }
-    for dependency in ss awk df stat readlink flock date sleep; do
-        command -v "$dependency" >/dev/null || { monitor_error "Missing command: $dependency"; return 1; }
-    done
-    AGENT_APP_PATH=$(readlink -f -- "$AGENT_APP_PATH") || return 1
-    monitor_run
-}
-
-if [[ ${BASH_SOURCE[0]} == "$0" ]]; then monitor_main "$@"; fi
+# source로 읽을 때는 함수만 정의하고, 직접 실행할 때만 main을 호출한다.
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then main "$@"; fi

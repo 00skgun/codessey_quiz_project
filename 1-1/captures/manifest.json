@@ -1,0 +1,163 @@
+[
+  {
+    "conversation_image_number": 2,
+    "file": "captures/01-firewall.png",
+    "width": 1256,
+    "height": 486,
+    "sha256": "ef100b8a19d018e1ec9c308662ab8019d6debdea359da63ba8e6d3218ee31576"
+  },
+  {
+    "conversation_image_number": 3,
+    "file": "captures/02-ssh.png",
+    "width": 1858,
+    "height": 278,
+    "sha256": "f4ed2244d30311469311ccd413640df97dc487c0305cdcb6aa7348e7c23df855"
+  },
+  {
+    "conversation_image_number": 4,
+    "file": "captures/03-accounts.png",
+    "width": 1858,
+    "height": 341,
+    "sha256": "0ac58bf6408d4c83fb7c1cf217dfb95cb180ad992c0667bb5a35e680ca92c285"
+  },
+  {
+    "conversation_image_number": 5,
+    "file": "captures/05-env-initial.png",
+    "width": 1951,
+    "height": 96,
+    "sha256": "e1c51f5e561c514c7114e5d58b17ec89a8614e5545a016c065c512bb64b06d90"
+  },
+  {
+    "conversation_image_number": 6,
+    "file": "captures/04-1-directories.png",
+    "width": 1590,
+    "height": 430,
+    "sha256": "f344525ba754db08f467de6915f6ac7572496bf5fd27fa77a18cc114749cb0c1"
+  },
+  {
+    "conversation_image_number": 7,
+    "file": "captures/04-2-acl-part-1.png",
+    "width": 1148,
+    "height": 995,
+    "sha256": "23257cb65b88e7ef9be210f09fd221cd43c72c8ecc035d98eb3fafb8f2614117"
+  },
+  {
+    "conversation_image_number": 9,
+    "file": "captures/04-2-acl-part-2.png",
+    "width": 1218,
+    "height": 1013,
+    "sha256": "fc8c3b584a91a74ee31fd4e11f0b5c1af01769a25a1011c45fcb844857eb5fdd"
+  },
+  {
+    "conversation_image_number": 10,
+    "file": "captures/04-3-access.png",
+    "width": 1454,
+    "height": 894,
+    "sha256": "a62c6dc0887b5f38f10bfce4996e9cb45157ebafb5bf99e9949a6dc821700c67"
+  },
+  {
+    "conversation_image_number": 11,
+    "file": "captures/05-1-environment.png",
+    "width": 1933,
+    "height": 714,
+    "sha256": "f342836c7164f6e38b55e1bbc6d63d73131ec88fc5c3fa41ff29863ecce8083f"
+  },
+  {
+    "conversation_image_number": 12,
+    "file": "captures/05-key-path-error.png",
+    "width": 1685,
+    "height": 558,
+    "sha256": "1e52cd84564bd1d13d4e7217f248dd77aa3926dad97668d51c567636d233c29d"
+  },
+  {
+    "conversation_image_number": 13,
+    "file": "captures/05-app-runtime.png",
+    "width": 1914,
+    "height": 1013,
+    "sha256": "35fe857c3edd8b59ced6a9c0db0d621f1de1b1393bdc21f0357df14048281db3"
+  },
+  {
+    "conversation_image_number": 14,
+    "file": "captures/05-3-listen.png",
+    "width": 1942,
+    "height": 231,
+    "sha256": "839b802e4e3c7e4e9fa08487ced888e01e1d54794f1c1c6d1f1b25f409448ff6"
+  },
+  {
+    "conversation_image_number": 15,
+    "file": "captures/05-key-path-config-update.png",
+    "width": 1988,
+    "height": 1058,
+    "sha256": "eac9782bb4cbb1877ac39c9d16567225aa865db5c6ac885ace4908ec2dc69ee2"
+  },
+  {
+    "conversation_image_number": 16,
+    "file": "captures/06-1-monitor-ok.png",
+    "width": 1694,
+    "height": 427,
+    "sha256": "6ff9ffbf4d00fb30212136bdee3241e8e4e90f5498fe403d348c9efc4d03aaa3"
+  },
+  {
+    "conversation_image_number": 17,
+    "file": "captures/07-1-log.png",
+    "width": 1652,
+    "height": 285,
+    "sha256": "a60b58f850a7b1c6e7180544fa1033fe526f0cfc9a32e20e0e04320b5f5a479d"
+  },
+  {
+    "conversation_image_number": 18,
+    "file": "captures/06-2-monitor-failure.png",
+    "width": 1573,
+    "height": 187,
+    "sha256": "34aa75fbfd37e2293801e11b0462a12ba3f250ff81f49358000657b0e3dc50c8"
+  },
+  {
+    "conversation_image_number": 19,
+    "file": "captures/08-1-cron-before.png",
+    "width": 1935,
+    "height": 316,
+    "sha256": "f7a201ec8cd9480ec42c642f39a4bd402d54f4e1745a55f7144e85533a8ae480"
+  },
+  {
+    "conversation_image_number": 20,
+    "file": "captures/08-2-cron-after.png",
+    "width": 1128,
+    "height": 257,
+    "sha256": "0a854cc84fea9eeb4472f9216f1a791cb724034ca806947e92fef244053980d9"
+  },
+  {
+    "conversation_image_number": 21,
+    "file": "captures/06-3-warnings.png",
+    "width": 1396,
+    "height": 579,
+    "sha256": "b1d64ce55e2b9a9ece57447a504cb8300f5a95913ea0e476c7b637550d23956e"
+  },
+  {
+    "conversation_image_number": 22,
+    "file": "captures/09-log-rotation.png",
+    "width": 1317,
+    "height": 1151,
+    "sha256": "75440e0ddc77168a91c95a52ee08ef16840b83d8b84a784ba2932ddd9cc74b6c"
+  },
+  {
+    "conversation_image_number": 23,
+    "file": "captures/06-4-sudo-policy.png",
+    "width": 1944,
+    "height": 208,
+    "sha256": "2f12626dee299a0c11e27c5c375b36b44f5c4afa018ae9cce77c82a4c18af082"
+  },
+  {
+    "conversation_image_number": 25,
+    "file": "captures/10-source-copy.png",
+    "width": 1519,
+    "height": 143,
+    "sha256": "801bdaca34b1d0dbfa6b0a74dad3a60b7a1898ef2b970c6554604642660d2500"
+  },
+  {
+    "conversation_image_number": 26,
+    "file": "captures/05-2-boot.png",
+    "width": 1494,
+    "height": 521,
+    "sha256": "e3f88968860c23b58334d03d80a2c2d5b5cb815d11f1c5d728f310dc143e6f6d"
+  }
+]

@@ -1,5 +1,4 @@
-# Provided application binaries are kept locally; submit the Bash source and report.
 /provided/
-/agent-app.zip
+/tmp/
 /.qa/
-/제출자료.zip
+/agent-app.zip
