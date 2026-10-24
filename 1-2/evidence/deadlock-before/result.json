@@ -1,0 +1,21 @@
+{
+  "case": "deadlock-before",
+  "pid": 1059,
+  "launcher_pid": 1057,
+  "started_at": "2026-10-19T18:20:46.647+00:00",
+  "ended_at": "2026-10-19T18:22:08.539+00:00",
+  "observation_seconds": 76.101,
+  "alive_at_window_end": true,
+  "harness_stopped": true,
+  "returncode": -15,
+  "config": {
+    "AGENT_HOME": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/deadlock-before-20261019T182046631910",
+    "AGENT_PORT": "15034",
+    "AGENT_UPLOAD_DIR": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/deadlock-before-20261019T182046631910/upload_files",
+    "AGENT_KEY_PATH": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/deadlock-before-20261019T182046631910/api_keys",
+    "AGENT_LOG_DIR": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/deadlock-before-20261019T182046631910/logs",
+    "MEMORY_LIMIT": "512",
+    "CPU_MAX_OCCUPY": "10",
+    "MULTI_THREAD_ENABLE": "true"
+  }
+}

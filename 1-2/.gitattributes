@@ -1,0 +1,5 @@
+# Keep Linux scripts executable by Bash/Python after a Windows checkout.
+*.sh text eol=lf
+*.py text eol=lf
+# Preserve collected evidence bytes, including whitespace from ps/top output.
+evidence/** -text

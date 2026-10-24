@@ -1,0 +1,31 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>deadlock-after | Saved evidence</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#dbeafe;font:15px/1.5 Arial,"Malgun Gothic",sans-serif}main{padding:28px 32px;width:1360px}.badge{color:#7dd3fc;font-size:13px;letter-spacing:1px}h1{margin:8px 0;font-size:27px;color:#fff}p{margin:6px 0;color:#a8bbd4}.meta{padding:12px 16px;background:#152238;border-left:4px solid #38bdf8;margin:18px 0}h2{font-size:14px;margin:0;padding:10px 14px;color:#93c5fd;background:#18263b}section{margin:16px 0;border:1px solid #30435f;border-radius:8px;overflow:hidden}pre{margin:0;padding:14px;font:14px/21px Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#e2e8f0}footer{color:#94a3b8;font-size:13px;margin-top:20px}</style>
+<main><div class="badge">SAVED LOG EVIDENCE · 저장 로그 발췌 화면</div><h1>deadlock-after · Application PID 1191</h1>
+<p>실제 실행 로그를 읽기 전용 HTML로 표시한 캡처입니다. 실시간 터미널 화면이 아닙니다.</p>
+<div class="meta">MEMORY_LIMIT=512 | CPU_MAX_OCCUPY=10 | MULTI_THREAD_ENABLE=false<br>Started: 2026-10-19T18:22:08.586+00:00 · observed 76.125s<br>Launcher PID 1189 · returncode -15 · harness_stopped=true</div>
+<section><h2>app.log — 원본 줄 번호</h2><pre>  98  2026-10-20 03:23:12,260 [INFO] [MemoryWorker] Current Heap: 475MB
+ 100  2026-10-20 03:23:13,689 [INFO] [CpuWorker] Current Load: 10.00%
+ 101  2026-10-20 03:23:15,296 [INFO] [MemoryWorker] Current Heap: 500MB
+ 102  2026-10-20 03:23:16,802 [INFO] [CpuWorker] Current Load: 8.20%
+ 103  2026-10-20 03:23:18,333 [INFO] [MemoryWorker] Current Heap: 525MB
+ 105  2026-10-20 03:23:18,380 [INFO] [System] Memory Cache Flushed. Process Stabilized.
+ 107  &gt;&gt;&gt; [SYSTEM] MEMORY RECOVERED (Cache Cleared) &lt;&lt;&lt;
+ 109  2026-10-20 03:23:19,915 [INFO] [CpuWorker] Current Load: 7.83%
+ 111  2026-10-20 03:23:23,032 [INFO] [CpuWorker] Current Load: 5.00%
+ 112  2026-10-20 03:23:23,419 [INFO] [MemoryWorker] Current Heap: 25MB
+ 114  2026-10-20 03:23:29,090 [INFO] [CpuWorker] Current Load: 10.00%
+ 115  2026-10-20 03:23:29,392 [INFO] [MemoryWorker] Current Heap: 50MB
+ 117  2026-10-20 03:23:32,206 [INFO] [CpuWorker] Current Load: 5.00%
+ 118  2026-10-20 03:23:32,421 [INFO] [MemoryWorker] Current Heap: 75MB</pre></section><section><h2>metrics.csv — 마지막 6개 표본 (UTC)</h2><pre>timestamp,pid,elapsed_s,rss_kib,cpu_pct,threads,state,log_bytes
+2026-10-19T18:23:31.015+00:00,1191,73.310,69548,0.00,3,S,7073
+2026-10-19T18:23:31.517+00:00,1191,73.813,69548,0.00,3,S,7169
+2026-10-19T18:23:32.019+00:00,1191,74.315,69548,0.00,3,S,7169
+2026-10-19T18:23:32.521+00:00,1191,74.816,95152,3.99,3,S,7297
+2026-10-19T18:23:33.022+00:00,1191,75.318,95152,0.00,3,S,7297
+2026-10-19T18:23:33.524+00:00,1191,75.820,95152,0.00,3,S,7297</pre></section><section><h2>system.log — 마지막 ps 스냅샷 (UTC)</h2><pre>SNAPSHOT timestamp=2026-10-19T18:23:31.396+00:00 pid=1191
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1191    1189      73 SNl   1.3  0.4 69548 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1191    1191 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1191    1200 SNl   0.9 do_select                        agent-leak-app-
+   1191    1201 SNl   0.3 do_select                        agent-leak-app-</pre></section><footer>Source: evidence/deadlock-after/ · 앱 로그 KST / 관제·시스템 로그 UTC · 앱 부하 표시와 OS CPU 측정은 별개입니다.</footer></main></html>

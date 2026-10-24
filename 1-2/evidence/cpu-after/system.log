@@ -1,0 +1,240 @@
+run=cpu-after started_at=2026-10-19T18:20:06.571+00:00 kernel=Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.35 uid=1000
+launcher_pid=991 application_pid=993
+
+SNAPSHOT timestamp=2026-10-19T18:20:06.805+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991       0 D     0.0  0.0  8556 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 R     0.0 -                                agent-leak-app-
+top - 03:20:06 up 7 min,  1 user,  load average: 0.02, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.1 us,  1.6 sy,  0.0 ni, 95.9 id,  0.0 wa,  0.0 hi,  0.4 si,  0.0 st
+MiB Mem :  15634.1 total,  14458.2 free,    524.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14910.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   23152  18156   9840 S  26.7   0.1   0:00.05 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:08.973+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991       2 SN    3.0  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    3.0 do_select                        agent-leak-app-
+top - 03:20:09 up 7 min,  1 user,  load average: 0.02, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.3 free,    526.6 used,    651.2 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.06 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:11.139+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991       5 SN    1.2  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.2 do_select                        agent-leak-app-
+top - 03:20:11 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.3 free,    526.6 used,    651.2 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.06 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:13.309+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991       7 SN    1.0  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.0 do_select                        agent-leak-app-
+top - 03:20:13 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.3 free,    527.5 used,    651.2 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.07 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:15.478+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991       9 SN    1.0  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.0 do_select                        agent-leak-app-
+top - 03:20:15 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.3 free,    527.5 used,    651.2 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.09 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:17.646+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      11 SN    0.8  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.8 do_select                        agent-leak-app-
+top - 03:20:17 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.0 free,    527.8 used,    651.2 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.09 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:19.816+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      13 SN    0.8  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.8 do_select                        agent-leak-app-
+top - 03:20:19 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14454.8 free,    528.0 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14906.7 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.11 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:21.985+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      15 SN    0.9  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.9 do_select                        agent-leak-app-
+top - 03:20:22 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14454.6 free,    528.3 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14906.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.14 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:24.153+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      18 SN    0.7  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.7 do_select                        agent-leak-app-
+top - 03:20:24 up 7 min,  1 user,  load average: 0.01, 0.06, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14454.1 free,    528.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14906.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.14 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:26.322+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      20 SN    0.9  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.9 do_select                        agent-leak-app-
+top - 03:20:26 up 7 min,  1 user,  load average: 0.09, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14453.3 free,    529.5 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14905.3 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.18 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:31.398+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      22 SN    0.9  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.9 do_select                        agent-leak-app-
+top - 03:20:31 up 7 min,  1 user,  load average: 0.09, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14453.3 free,    529.5 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14905.3 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.21 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:33.570+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      24 SN    0.8  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    0.8 do_select                        agent-leak-app-
+top - 03:20:33 up 7 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.8 sy,  1.6 ni, 97.5 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14454.1 free,    528.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14905.7 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S  33.3   0.1   0:00.26 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:35.738+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      26 SN    1.0  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.0 do_select                        agent-leak-app-
+top - 03:20:35 up 7 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.26 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:37.912+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      28 SN    1.1  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.1 do_select                        agent-leak-app-
+top - 03:20:38 up 7 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.5 free,    527.3 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.31 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:40.078+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      31 SN    1.1  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.1 do_select                        agent-leak-app-
+top - 03:20:40 up 7 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.1 free,    527.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.36 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:42.246+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      33 SN    1.0  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.0 do_select                        agent-leak-app-
+top - 03:20:42 up 7 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.1 free,    527.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.36 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:44.413+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      35 SN    1.1  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.1 do_select                        agent-leak-app-
+top - 03:20:44 up 7 min,  1 user,  load average: 0.07, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14454.8 free,    528.0 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14906.8 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    993 skgun00   30  10   24176  18220   9840 S   0.0   0.1   0:00.41 agent-l+

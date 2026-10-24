@@ -1,0 +1,21 @@
+{
+  "case": "oom-before",
+  "pid": 776,
+  "launcher_pid": 773,
+  "started_at": "2026-10-19T18:18:10.761+00:00",
+  "ended_at": "2026-10-19T18:18:17.512+00:00",
+  "observation_seconds": 6.75,
+  "alive_at_window_end": false,
+  "harness_stopped": false,
+  "returncode": -9,
+  "config": {
+    "AGENT_HOME": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/oom-before-20261019T181810744552",
+    "AGENT_PORT": "15034",
+    "AGENT_UPLOAD_DIR": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/oom-before-20261019T181810744552/upload_files",
+    "AGENT_KEY_PATH": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/oom-before-20261019T181810744552/api_keys",
+    "AGENT_LOG_DIR": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/oom-before-20261019T181810744552/logs",
+    "MEMORY_LIMIT": "50",
+    "CPU_MAX_OCCUPY": "100",
+    "MULTI_THREAD_ENABLE": "false"
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>cpu-after | Saved evidence</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#dbeafe;font:15px/1.5 Arial,"Malgun Gothic",sans-serif}main{padding:28px 32px;width:1360px}.badge{color:#7dd3fc;font-size:13px;letter-spacing:1px}h1{margin:8px 0;font-size:27px;color:#fff}p{margin:6px 0;color:#a8bbd4}.meta{padding:12px 16px;background:#152238;border-left:4px solid #38bdf8;margin:18px 0}h2{font-size:14px;margin:0;padding:10px 14px;color:#93c5fd;background:#18263b}section{margin:16px 0;border:1px solid #30435f;border-radius:8px;overflow:hidden}pre{margin:0;padding:14px;font:14px/21px Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#e2e8f0}footer{color:#94a3b8;font-size:13px;margin-top:20px}</style>
+<main><div class="badge">SAVED LOG EVIDENCE · 저장 로그 발췌 화면</div><h1>cpu-after · Application PID 993</h1>
+<p>실제 실행 로그를 읽기 전용 HTML로 표시한 캡처입니다. 실시간 터미널 화면이 아닙니다.</p>
+<div class="meta">MEMORY_LIMIT=512 | CPU_MAX_OCCUPY=100 | MULTI_THREAD_ENABLE=false<br>Started: 2026-10-19T18:20:06.571+00:00 · observed 37.108s<br>Launcher PID 991 · returncode -15 · harness_stopped=false</div>
+<section><h2>app.log — 원본 줄 번호</h2><pre>  31  2026-10-20 03:20:08,927 [INFO] [CpuWorker] Current Load: 5.00%
+  32  2026-10-20 03:20:12,040 [INFO] [CpuWorker] Current Load: 8.79%
+  33  2026-10-20 03:20:15,152 [INFO] [CpuWorker] Current Load: 14.36%
+  34  2026-10-20 03:20:18,267 [INFO] [CpuWorker] Current Load: 18.89%
+  35  2026-10-20 03:20:21,375 [INFO] [CpuWorker] Current Load: 27.80%
+  36  2026-10-20 03:20:24,490 [INFO] [CpuWorker] Current Load: 32.05%
+  37  2026-10-20 03:20:30,509 [INFO] [CpuWorker] Current Load: 35.16%
+  38  2026-10-20 03:20:33,622 [INFO] [CpuWorker] Current Load: 41.88%
+  39  2026-10-20 03:20:36,729 [INFO] [CpuWorker] Current Load: 43.40%
+  40  2026-10-20 03:20:39,841 [INFO] [CpuWorker] Current Load: 46.08%
+  41  2026-10-20 03:20:42,957 [INFO] [CpuWorker] Current Load: 47.01%
+  42  2026-10-20 03:20:46,071 [INFO] [CpuWorker] Current Load: 56.50%
+  43  2026-10-20 03:20:46,174 [CRITICAL] [CpuWorker] CPU Threshold Violated! (56.5%).
+  45  &gt;&gt;&gt; [SYSTEM] WATCHDOG: INITIATING EMERGENCY ABORT (SIGTERM) &lt;&lt;&lt;</pre></section><section><h2>metrics.csv — 마지막 6개 표본 (UTC)</h2><pre>timestamp,pid,elapsed_s,rss_kib,cpu_pct,threads,state,log_bytes
+2026-10-19T18:20:43.383+00:00,993,33.642,18220,9.97,1,S,2139
+2026-10-19T18:20:43.885+00:00,993,34.143,18220,0.00,1,S,2139
+2026-10-19T18:20:44.387+00:00,993,34.645,18220,0.00,1,S,2139
+2026-10-19T18:20:44.889+00:00,993,35.147,18220,0.00,1,S,2139
+2026-10-19T18:20:45.391+00:00,993,35.650,18220,0.00,1,S,2139
+2026-10-19T18:20:45.893+00:00,993,36.152,18220,0.00,1,S,2139</pre></section><section><h2>system.log — 마지막 ps 스냅샷 (UTC)</h2><pre>SNAPSHOT timestamp=2026-10-19T18:20:44.413+00:00 pid=993
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    993     991      35 SN    1.1  0.1 18220 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    993     993 SN    1.1 do_select                        agent-leak-app-</pre></section><footer>Source: evidence/cpu-after/ · 앱 로그 KST / 관제·시스템 로그 UTC · 앱 부하 표시와 OS CPU 측정은 별개입니다.</footer></main></html>

@@ -1,0 +1,9 @@
+Linux DESKTOP-6U6TM2O 6.6.114.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Mon Dec  1 20:46:23 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+uid=1000(skgun00) gid=1000(skgun00) groups=1000(skgun00),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),117(netdev),999(docker)
+Python 3.10.12
+ps from procps-ng 3.3.17
+  procps-ng 3.3.17
+Usage:
+  top -hv | -bcEeHiOSs1 -d secs -n max -u|U user -p pid(s) -o field -w [cols]
+249c9c2841718cb29ef2ed680668f328f5ee253354090225347e130a2e456641  agent-app-leak.zip
+7e0a19cfa80ece6b547a5008273661f0d4d71e526e96b51e0d0f341dd1bb3e40  bin/agent-leak-app-x86

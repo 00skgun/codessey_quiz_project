@@ -1,0 +1,21 @@
+{
+  "case": "cpu-after",
+  "pid": 993,
+  "launcher_pid": 991,
+  "started_at": "2026-10-19T18:20:06.571+00:00",
+  "ended_at": "2026-10-19T18:20:46.582+00:00",
+  "observation_seconds": 37.108,
+  "alive_at_window_end": false,
+  "harness_stopped": false,
+  "returncode": -15,
+  "config": {
+    "AGENT_HOME": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/cpu-after-20261019T182006552451",
+    "AGENT_PORT": "15034",
+    "AGENT_UPLOAD_DIR": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/cpu-after-20261019T182006552451/upload_files",
+    "AGENT_KEY_PATH": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/cpu-after-20261019T182006552451/api_keys",
+    "AGENT_LOG_DIR": "/mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/cpu-after-20261019T182006552451/logs",
+    "MEMORY_LIMIT": "512",
+    "CPU_MAX_OCCUPY": "100",
+    "MULTI_THREAD_ENABLE": "false"
+  }
+}

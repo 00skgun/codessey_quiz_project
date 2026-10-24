@@ -1,0 +1,20 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>oom-before | Saved evidence</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#dbeafe;font:15px/1.5 Arial,"Malgun Gothic",sans-serif}main{padding:28px 32px;width:1360px}.badge{color:#7dd3fc;font-size:13px;letter-spacing:1px}h1{margin:8px 0;font-size:27px;color:#fff}p{margin:6px 0;color:#a8bbd4}.meta{padding:12px 16px;background:#152238;border-left:4px solid #38bdf8;margin:18px 0}h2{font-size:14px;margin:0;padding:10px 14px;color:#93c5fd;background:#18263b}section{margin:16px 0;border:1px solid #30435f;border-radius:8px;overflow:hidden}pre{margin:0;padding:14px;font:14px/21px Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#e2e8f0}footer{color:#94a3b8;font-size:13px;margin-top:20px}</style>
+<main><div class="badge">SAVED LOG EVIDENCE · 저장 로그 발췌 화면</div><h1>oom-before · Application PID 776</h1>
+<p>실제 실행 로그를 읽기 전용 HTML로 표시한 캡처입니다. 실시간 터미널 화면이 아닙니다.</p>
+<div class="meta">MEMORY_LIMIT=50 | CPU_MAX_OCCUPY=100 | MULTI_THREAD_ENABLE=false<br>Started: 2026-10-19T18:18:10.761+00:00 · observed 6.750s<br>Launcher PID 773 · returncode -9 · harness_stopped=false</div>
+<section><h2>app.log — 원본 줄 번호</h2><pre>  30  2026-10-20 03:18:13,150 [INFO] [MemoryWorker] Current Heap: 25MB
+  31  2026-10-20 03:18:16,175 [INFO] [MemoryWorker] Current Heap: 50MB
+  32  2026-10-20 03:18:16,177 [CRITICAL] [MemoryGuard] Memory limit exceeded (50MB &gt;= 50MB) / (Recommend Over 256MB)
+  33  2026-10-20 03:18:16,178 [CRITICAL] [MemoryGuard] Self-terminating process 776 to prevent system instability.
+  36  &gt;&gt;&gt; [SYSTEM] SELF-TERMINATED (Memory Limit Exceeded) &lt;&lt;&lt;</pre></section><section><h2>metrics.csv — 마지막 6개 표본 (UTC)</h2><pre>timestamp,pid,elapsed_s,rss_kib,cpu_pct,threads,state,log_bytes
+2026-10-19T18:18:13.542+00:00,776,2.510,43684,5.98,1,S,1452
+2026-10-19T18:18:14.045+00:00,776,3.013,43684,0.00,1,S,1452
+2026-10-19T18:18:14.548+00:00,776,3.515,43684,0.00,1,S,1452
+2026-10-19T18:18:15.050+00:00,776,4.018,43684,0.00,1,S,1452
+2026-10-19T18:18:15.552+00:00,776,4.520,43684,0.00,1,S,1452
+2026-10-19T18:18:16.055+00:00,776,5.022,43684,0.00,1,S,1452</pre></section><section><h2>system.log — 마지막 ps 스냅샷 (UTC)</h2><pre>SNAPSHOT timestamp=2026-10-19T18:18:15.342+00:00 pid=776
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+    776     773       4 SN    2.2  0.2 43684 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+    776     776 SN    2.2 do_select                        agent-leak-app-</pre></section><footer>Source: evidence/oom-before/ · 앱 로그 KST / 관제·시스템 로그 UTC · 앱 부하 표시와 OS CPU 측정은 별개입니다.</footer></main></html>

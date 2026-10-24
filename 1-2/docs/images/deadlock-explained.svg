@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="350" viewBox="0 0 1000 350" role="img" aria-labelledby="title desc">
+<title id="title">두 스레드가 서로 보유한 자원을 기다리는 교착 구조</title>
+<desc id="desc">Thread 1은 Shared Memory A를 보유하고 Socket Pool B를 기다린다. Thread 2는 Socket Pool B를 보유하고 Shared Memory A를 기다린다.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#db5b31" stroke-width="1.6"/></marker></defs>
+<rect width="1000" height="350" rx="18" fill="#f2f6fa"/>
+<g font-family="Malgun Gothic, Arial, sans-serif" fill="#172c45">
+<text x="36" y="42" font-size="22" font-weight="700">둘 다 살아 있지만 다음 일을 시작할 수 없습니다</text>
+<rect x="46" y="94" width="350" height="164" rx="14" fill="#ffffff" stroke="#bfd0e0"/>
+<rect x="604" y="94" width="350" height="164" rx="14" fill="#ffffff" stroke="#bfd0e0"/>
+<text x="70" y="128" font-size="20" font-weight="700">Worker-Thread-1</text>
+<text x="628" y="128" font-size="20" font-weight="700">Worker-Thread-2</text>
+<text x="70" y="169" font-size="17">보유  A · Shared_Memory_A</text>
+<text x="70" y="207" font-size="17" fill="#b44723">대기  B · Socket_Pool_B</text>
+<text x="628" y="169" font-size="17">보유  B · Socket_Pool_B</text>
+<text x="628" y="207" font-size="17" fill="#b44723">대기  A · Shared_Memory_A</text>
+<path d="M405,145 H588" fill="none" stroke="#db5b31" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="499" y="126" font-size="15" text-anchor="middle">B를 기다림</text>
+<path d="M595,218 H412" fill="none" stroke="#db5b31" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="499" y="248" font-size="15" text-anchor="middle">A를 기다림</text>
+<text x="500" y="309" text-anchor="middle" font-size="18" font-weight="700">해결 방향: 모든 작업자가 A → B 순서로 락을 획득</text>
+</g></svg>

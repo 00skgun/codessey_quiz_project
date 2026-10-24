@@ -1,0 +1,618 @@
+run=deadlock-before started_at=2026-10-19T18:20:46.647+00:00 kernel=Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.35 uid=1000
+launcher_pid=1057 application_pid=1059
+
+SNAPSHOT timestamp=2026-10-19T18:20:46.881+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057       0 R     0.0  0.0  8772 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 D     0.0 p9_client_rpc                    agent-leak-app-
+top - 03:20:47 up 7 min,  1 user,  load average: 0.07, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.1 us,  0.8 sy,  0.0 ni, 97.1 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14458.2 free,    524.6 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14910.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10   23152  18180   9864 S  33.3   0.1   0:00.06 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:49.047+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057       3 SN    2.0  0.1 18180 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SN    2.0 do_select                        agent-leak-app-
+top - 03:20:49 up 7 min,  1 user,  load average: 0.06, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14457.2 free,    525.5 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14909.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10   23152  18180   9864 S   0.0   0.1   0:00.06 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:51.218+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057       5 SN    1.2  0.1 18180 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SN    1.2 do_select                        agent-leak-app-
+top - 03:20:51 up 7 min,  1 user,  load average: 0.06, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.7 free,    526.0 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.7 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10   23152  18180   9864 S   0.0   0.1   0:00.06 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:53.385+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057       7 SN    0.8  0.1 18180 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SN    0.8 do_select                        agent-leak-app-
+top - 03:20:53 up 7 min,  1 user,  load average: 0.06, 0.07, 0.03
+Threads:   1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.5 free,    526.3 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10   23152  18180   9864 S   0.0   0.1   0:00.06 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:55.551+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057       9 SNl   0.6  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.6 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 do_select                        agent-leak-app-
+   1059    1075 SNl   0.0 do_select                        agent-leak-app-
+top - 03:20:55 up 7 min,  1 user,  load average: 0.06, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.5 free,    526.3 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:57.717+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      11 SNl   0.5  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.5 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:20:57 up 7 min,  1 user,  load average: 0.05, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.5 free,    526.3 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:20:59.883+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      13 SNl   0.4  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.4 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:00 up 7 min,  1 user,  load average: 0.05, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.5 free,    526.3 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:02.051+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      16 SNl   0.3  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.3 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:05 up 8 min,  1 user,  load average: 0.05, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:07.033+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      18 SNl   0.3  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.3 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:07 up 8 min,  1 user,  load average: 0.05, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14457.0 free,    525.8 used,    651.3 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.9 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:09.204+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      20 SNl   0.3  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.3 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:09 up 8 min,  1 user,  load average: 0.05, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.4 us,  0.0 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.2 free,    526.4 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.3 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:11.370+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      22 SNl   0.2  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.2 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:11 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:13.538+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      24 SNl   0.2  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.2 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:13 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:15.706+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      26 SNl   0.2  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.2 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:15 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:17.873+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      29 SNl   0.2  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.2 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:18 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:20.040+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      31 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:20 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:22.208+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      33 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:22 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:24.374+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      35 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:24 up 8 min,  1 user,  load average: 0.04, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:26.542+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      37 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:26 up 8 min,  1 user,  load average: 0.03, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.4 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:28.713+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      39 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:28 up 8 min,  1 user,  load average: 0.03, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:30.881+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      42 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:31 up 8 min,  1 user,  load average: 0.03, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:33.051+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      44 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:33 up 8 min,  1 user,  load average: 0.03, 0.06, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14456.0 free,    526.6 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14908.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:35.217+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      46 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:35 up 8 min,  1 user,  load average: 0.11, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.5 free,    527.1 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:37.388+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      48 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:40 up 8 min,  1 user,  load average: 0.11, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.5 free,    527.1 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:42.524+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      50 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:42 up 8 min,  1 user,  load average: 0.11, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.5 free,    527.1 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:44.690+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      52 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:44 up 8 min,  1 user,  load average: 0.10, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.5 free,    527.1 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:46.861+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      55 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:47 up 8 min,  1 user,  load average: 0.10, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.5 free,    527.1 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:49.028+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      57 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:49 up 8 min,  1 user,  load average: 0.09, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.4 us,  0.0 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.2 free,    527.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.4 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:51.193+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      59 SNl   0.1  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.1 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:51 up 8 min,  1 user,  load average: 0.09, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.2 free,    527.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.4 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:53.360+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      61 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:53 up 8 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.2 free,    527.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.4 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:55.526+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      63 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:55 up 8 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.2 free,    527.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.4 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:57.692+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      65 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:21:57 up 8 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.2 free,    527.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.4 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:21:59.861+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      68 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:22:00 up 8 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.2 free,    527.4 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.4 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:22:02.028+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      70 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:22:02 up 8 min,  1 user,  load average: 0.08, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.0 free,    527.6 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:22:04.194+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      72 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:22:04 up 8 min,  1 user,  load average: 0.07, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14455.0 free,    527.6 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14907.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+SNAPSHOT timestamp=2026-10-19T18:22:06.362+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      74 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-
+top - 03:22:06 up 8 min,  1 user,  load average: 0.07, 0.07, 0.03
+Threads:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15634.1 total,  14454.8 free,    527.8 used,    651.5 buff/cache
+MiB Swap:   4096.0 total,   4096.0 free,      0.0 used.  14906.9 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1059 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.06 agent-l+
+   1074 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+   1075 skgun00   30  10  170616  18244   9864 S   0.0   0.1   0:00.00 agent-l+
+
+HARNESS_STOP timestamp=2026-10-19T18:22:08.530+00:00 pid=1057 reason=observation_window_end signal=SIGTERM

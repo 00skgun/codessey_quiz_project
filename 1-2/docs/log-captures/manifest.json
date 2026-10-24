@@ -1,0 +1,32 @@
+[
+  {
+    "name": "oom-before",
+    "width": 1360,
+    "height": 903
+  },
+  {
+    "name": "oom-after",
+    "width": 1360,
+    "height": 1029
+  },
+  {
+    "name": "cpu-before",
+    "width": 1360,
+    "height": 1134
+  },
+  {
+    "name": "cpu-after",
+    "width": 1360,
+    "height": 1092
+  },
+  {
+    "name": "deadlock-before",
+    "width": 1360,
+    "height": 1071
+  },
+  {
+    "name": "deadlock-after",
+    "width": 1360,
+    "height": 1134
+  }
+]

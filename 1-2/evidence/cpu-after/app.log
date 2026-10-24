@@ -1,0 +1,46 @@
+>>> Starting Agent Boot Sequence...
+[1/6] Checking User Account               [OK]
+   ... Running as service user 'skgun00' (uid=1000)
+[2/6] Verifying Environment Variables     [OK]
+   ... All required Envs correct
+[3/6] Checking Required Files             [OK]
+   ... Verified 'secret.key' with correct key string.
+[4/6] Checking Port Availability          [OK]
+   ... Port 15034 is available.
+[5/6] Verifying Log Permission            [OK]
+   ... Log directory is writable: /mnt/c/Users/user/Desktop/2026/codessey/1-2/runtime/cpu-after-20261019T182006552451/logs
+[6/6] Verifying Mission Environment       [OK]
+   ... MEMORY_LIMIT=512MB, CPU_MAX_OCCUPY=100%, MULTI_THREAD_ENABLE=False
+------------------------------------------------------------
+All Boot Checks Passed!
+Agent READY
+2026-10-20 03:20:06,916 [INFO] [SafetyGuard] Process priority lowered (nice=10).
+2026-10-20 03:20:06,917 [INFO] Agent listening at port 15034
+
+==================================================
+ [ Agent Initiate ] Resource Check 
+==================================================
+ [ MEMORY ] Limit: 512MB 		[ OK ]
+ [ CPU    ] Limit: 100%  		[ WARNING: Recommend Under 50% ]
+ [ THREAD ] Concurrency: False 		[ OK ]
+--------------------------------------------------
+ >>> SYSTEM STATUS: STABLE. STARTING WORKLOAD MONITORING...
+==================================================
+
+2026-10-20 03:20:08,926 [INFO] [CpuWorker] Started. Maximum CPU Limit: 100%
+2026-10-20 03:20:08,927 [INFO] [CpuWorker] Current Load: 5.00%
+2026-10-20 03:20:12,040 [INFO] [CpuWorker] Current Load: 8.79%
+2026-10-20 03:20:15,152 [INFO] [CpuWorker] Current Load: 14.36%
+2026-10-20 03:20:18,267 [INFO] [CpuWorker] Current Load: 18.89%
+2026-10-20 03:20:21,375 [INFO] [CpuWorker] Current Load: 27.80%
+2026-10-20 03:20:24,490 [INFO] [CpuWorker] Current Load: 32.05%
+2026-10-20 03:20:30,509 [INFO] [CpuWorker] Current Load: 35.16%
+2026-10-20 03:20:33,622 [INFO] [CpuWorker] Current Load: 41.88%
+2026-10-20 03:20:36,729 [INFO] [CpuWorker] Current Load: 43.40%
+2026-10-20 03:20:39,841 [INFO] [CpuWorker] Current Load: 46.08%
+2026-10-20 03:20:42,957 [INFO] [CpuWorker] Current Load: 47.01%
+2026-10-20 03:20:46,071 [INFO] [CpuWorker] Current Load: 56.50%
+2026-10-20 03:20:46,174 [CRITICAL] [CpuWorker] CPU Threshold Violated! (56.5%).
+
+>>> [SYSTEM] WATCHDOG: INITIATING EMERGENCY ABORT (SIGTERM) <<<
+

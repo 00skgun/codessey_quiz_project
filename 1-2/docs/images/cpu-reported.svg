@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="340" viewBox="0 0 1000 340">
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<g font-family="Arial, sans-serif" fill="#0f172a">
+<text x="36" y="34" font-size="22" font-weight="bold">CPU | application-reported load (not OS CPU)</text>
+<text x="36" y="62" fill="#2563eb" font-size="14">cpu-before | 10% | PID 847</text>
+<text x="496" y="62" fill="#e05b23" font-size="14">cpu-after | 100% | PID 993</text>
+<text x="36" y="94" font-size="15" font-weight="bold">Current Load from application log (%)</text>
+<path d="M88,263.0h860" stroke="#dbe2ea"/><text x="78" y="267.0" text-anchor="end" font-size="12">0.0</text>
+<text x="88.0" y="283" text-anchor="middle" font-size="12">0.0</text>
+<path d="M88,224.25h860" stroke="#dbe2ea"/><text x="78" y="228.25" text-anchor="end" font-size="12">15.8</text>
+<text x="303.0" y="283" text-anchor="middle" font-size="12">19.3</text>
+<path d="M88,185.5h860" stroke="#dbe2ea"/><text x="78" y="189.5" text-anchor="end" font-size="12">31.6</text>
+<text x="518.0" y="283" text-anchor="middle" font-size="12">38.6</text>
+<path d="M88,146.75h860" stroke="#dbe2ea"/><text x="78" y="150.75" text-anchor="end" font-size="12">47.5</text>
+<text x="733.0" y="283" text-anchor="middle" font-size="12">58.0</text>
+<path d="M88,108.0h860" stroke="#dbe2ea"/><text x="78" y="112.0" text-anchor="end" font-size="12">63.3</text>
+<text x="948.0" y="283" text-anchor="middle" font-size="12">77.3</text>
+<text x="948" y="303" text-anchor="end" font-size="12">Elapsed seconds since first Current Load record</text>
+<polyline points="88.00,250.75 122.62,238.51 157.22,249.53 191.88,250.04 226.55,250.75 261.15,238.51 295.77,250.75 330.41,238.51 365.08,250.75 399.65,243.62 464.88,238.51 499.49,250.75 534.07,238.51 568.94,250.75 603.62,238.51 638.22,250.75 672.84,242.45 707.54,238.51 742.22,250.75 776.87,238.51 844.18,246.64 878.79,250.75 913.40,249.68 948.00,241.42" fill="none" stroke="#2563eb" stroke-width="2.3"/>
+<circle cx="948.00" cy="241.42" r="4" fill="#2563eb"/>
+<polyline points="88.00,250.75 122.65,241.47 157.28,227.83 191.95,216.73 226.54,194.91 261.20,184.50 328.19,176.88 362.84,160.42 397.41,156.69 432.05,150.13 466.73,147.85 501.38,124.61" fill="none" stroke="#e05b23" stroke-width="2.3"/>
+<circle cx="501.38" cy="124.61" r="4" fill="#e05b23"/>
+</g>
+</svg>

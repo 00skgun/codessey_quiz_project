@@ -1,0 +1,7 @@
+bin/
+runtime/
+__pycache__/
+*.zip
+tmp/
+# The parent repository ignores *.log; these are required submission evidence.
+!evidence/**/*.log

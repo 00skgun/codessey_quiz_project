@@ -1,0 +1,28 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>deadlock-before | Saved evidence</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#dbeafe;font:15px/1.5 Arial,"Malgun Gothic",sans-serif}main{padding:28px 32px;width:1360px}.badge{color:#7dd3fc;font-size:13px;letter-spacing:1px}h1{margin:8px 0;font-size:27px;color:#fff}p{margin:6px 0;color:#a8bbd4}.meta{padding:12px 16px;background:#152238;border-left:4px solid #38bdf8;margin:18px 0}h2{font-size:14px;margin:0;padding:10px 14px;color:#93c5fd;background:#18263b}section{margin:16px 0;border:1px solid #30435f;border-radius:8px;overflow:hidden}pre{margin:0;padding:14px;font:14px/21px Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#e2e8f0}footer{color:#94a3b8;font-size:13px;margin-top:20px}</style>
+<main><div class="badge">SAVED LOG EVIDENCE · 저장 로그 발췌 화면</div><h1>deadlock-before · Application PID 1059</h1>
+<p>실제 실행 로그를 읽기 전용 HTML로 표시한 캡처입니다. 실시간 터미널 화면이 아닙니다.</p>
+<div class="meta">MEMORY_LIMIT=512 | CPU_MAX_OCCUPY=10 | MULTI_THREAD_ENABLE=true<br>Started: 2026-10-19T18:20:46.647+00:00 · observed 76.101s<br>Launcher PID 1057 · returncode -15 · harness_stopped=true</div>
+<section><h2>app.log — 원본 줄 번호</h2><pre>  32  2026-10-20 03:20:54,018 [INFO] [Worker-Thread-1] Process Started. Attempting to lock [Shared_Memory_A]...
+  33  2026-10-20 03:20:54,018 [INFO] [AgentWorker][Worker-Thread-2] Process Started. Attempting to lock [Socket_Pool_B]...
+  34  2026-10-20 03:20:54,018 [INFO] [AgentWorker] Waiting for worker threads to complete transactions...
+  35  2026-10-20 03:20:54,019 [INFO] [AgentWorker][Worker-Thread-1] LOCK ACQUIRED: [Shared_Memory_A]. (Holding...)
+  36  2026-10-20 03:20:54,020 [INFO] [AgentWorker][Worker-Thread-2] LOCK ACQUIRED: [Socket_Pool_B]. (Holding...)
+  37  2026-10-20 03:20:54,022 [INFO] [AgentWorker][Worker-Thread-1] Processing critical data in Memory A...
+  38  2026-10-20 03:20:54,023 [INFO] [AgentWorker][Worker-Thread-2] Establishing network connections in Pool B...
+  39  2026-10-20 03:20:56,029 [INFO] [AgentWorker][Worker-Thread-2] Need resource [Shared_Memory_A] to write logs.
+  40  2026-10-20 03:20:56,030 [INFO] [AgentWorker][Worker-Thread-2] WAITING for [Shared_Memory_A]... (Status: BLOCKED)
+  41  2026-10-20 03:20:56,032 [INFO] [AgentWorker][Worker-Thread-1] Need resource [Socket_Pool_B] to finish job.
+  42  2026-10-20 03:20:56,033 [INFO] [AgentWorker][Worker-Thread-1] WAITING for [Socket_Pool_B]... (Status: BLOCKED)</pre></section><section><h2>metrics.csv — 마지막 6개 표본 (UTC)</h2><pre>timestamp,pid,elapsed_s,rss_kib,cpu_pct,threads,state,log_bytes
+2026-10-19T18:22:05.988+00:00,1059,73.295,18244,0.00,3,S,2717
+2026-10-19T18:22:06.490+00:00,1059,73.797,18244,0.00,3,S,2717
+2026-10-19T18:22:06.993+00:00,1059,74.299,18244,0.00,3,S,2717
+2026-10-19T18:22:07.495+00:00,1059,74.802,18244,0.00,3,S,2717
+2026-10-19T18:22:07.997+00:00,1059,75.304,18244,0.00,3,S,2717
+2026-10-19T18:22:08.498+00:00,1059,75.805,18244,0.00,3,S,2717</pre></section><section><h2>system.log — 마지막 ps 스냅샷 (UTC)</h2><pre>SNAPSHOT timestamp=2026-10-19T18:22:06.362+00:00 pid=1059
+    PID    PPID ELAPSED STAT %CPU %MEM   RSS COMMAND
+   1059    1057      74 SNl   0.0  0.1 18244 /mnt/c/Users/user/Desktop/2026/codessey/1-2/bin/agent-leak-app-x86
+    PID     TID STAT %CPU WCHAN                            COMMAND
+   1059    1059 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1074 SNl   0.0 futex_wait_queue                 agent-leak-app-
+   1059    1075 SNl   0.0 futex_wait_queue                 agent-leak-app-</pre></section><footer>Source: evidence/deadlock-before/ · 앱 로그 KST / 관제·시스템 로그 UTC · 앱 부하 표시와 OS CPU 측정은 별개입니다.</footer></main></html>
