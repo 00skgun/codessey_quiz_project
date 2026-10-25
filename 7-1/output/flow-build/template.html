@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>%%TITLE%%</title>
+<style>
+:root{color-scheme:light;--ink:#173441;--muted:#506873;--teal:#06776e;--pale:#e7f5f1;--line:#d4e1e4;--gray:#f3f6f7}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#eef3f4;color:var(--ink);font:16px/1.85 'Malgun Gothic','Apple SD Gothic Neo',sans-serif;word-break:keep-all;overflow-wrap:anywhere}a{color:var(--teal)}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #a66212;outline-offset:4px}
+.hero{padding:48px max(24px,calc((100vw - 1180px)/2));background:var(--ink);color:white;border-top:7px solid #49bd9e}.hero .label{font:12px/1.6 sans-serif;letter-spacing:2px;color:#9de4cf}.hero h1{font-size:clamp(28px,3.8vw,42px);line-height:1.4;max-width:850px;margin:14px 0}.hero p{margin:10px 0;color:#d8e9ed}.hero .meta{font-size:13px;color:#b8cfd5}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.tools a,.tools button{padding:10px 15px;background:white;color:var(--ink);border:1px solid #c7dade;border-radius:5px;text-decoration:none;font:inherit;font-size:14px;cursor:pointer}.tools button:hover,.tools a:hover{background:var(--pale)}
+.shell{display:grid;grid-template-columns:245px minmax(0,1fr);gap:28px;max-width:1240px;margin:auto;padding:28px}.toc{align-self:start;position:sticky;top:20px;background:white;padding:22px;border:1px solid var(--line)}.toc h2{font-size:16px;margin:0 0 14px}.toc a{display:block;color:var(--muted);font-size:13px;text-decoration:none;padding:8px 0;line-height:1.65}.toc a:hover{color:var(--teal)}.toc a span{color:var(--teal);font-weight:bold;display:inline-block;width:24px}.legend{border-top:1px solid var(--line);padding-top:15px;font-size:12px;color:var(--muted)}.legend b{display:block;color:var(--teal)}
+main{min-width:0}section{background:white;border:1px solid var(--line);padding:30px 34px;margin-bottom:24px;scroll-margin-top:20px}.eyebrow{font-size:12px;color:var(--teal);font-weight:bold;letter-spacing:.5px;margin:0 0 10px}h2{font-size:26px;line-height:1.45;margin:8px 0 24px}h3{font-size:19px;color:var(--teal);margin:25px 0 13px}h4{font-size:16px;line-height:1.6;margin:0 0 5px}.lead{font-size:22px;line-height:1.7;font-weight:bold;color:var(--teal)}p{margin:13px 0}aside.mine,aside.note,aside.quote{border-left:4px solid var(--line);background:var(--gray);padding:16px 20px;margin:22px 0}aside.mine{border-color:var(--teal);background:var(--pale)}aside.mine strong{color:var(--teal)}aside p{margin:6px 0 0}aside.quote{border-color:#9baeb6;background:#eff4f7}
+.steps{list-style:none;padding:0;margin:18px 0}.step{display:grid;grid-template-columns:65px minmax(0,1fr);gap:16px;padding:17px 13px;border-bottom:1px solid var(--line)}.step.own,td.own{background:var(--pale)}.stepmark{font-size:12px;color:var(--teal);text-align:center}.stepmark b{display:block;font-size:23px;line-height:1.5}.stepmark span{display:block;font-weight:bold}.step p{margin:0}
+.tablewrap{margin:18px 0}table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;line-height:1.7}th,td{text-align:left;vertical-align:top;padding:11px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:var(--ink);color:white;font-weight:600}tbody tr:nth-child(even){background:var(--gray)}pre{padding:20px;background:#f1f5f7;border:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.9 Consolas,'Malgun Gothic',monospace}details{padding:15px 18px;border:1px solid var(--line);margin:14px 0}summary{font-weight:bold;cursor:pointer}details[open]{background:var(--pale)}details p{border-top:1px solid #c1ddd5;padding-top:12px}.refs{border-top:1px solid var(--line);padding-top:15px;font-size:12px;color:var(--muted)}.refs a{text-underline-offset:3px}.end{font-size:13px;color:var(--muted);text-align:center;padding:12px 0 30px}
+@media(max-width:940px){.shell{display:block;padding:18px}.toc{position:static;margin-bottom:20px}.toc nav{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}section{padding:28px}}
+@media(max-width:520px){.hero{padding:30px 20px}.shell{padding:12px}.toc{padding:19px}.toc nav{grid-template-columns:1fr}.hero h1{font-size:28px}section{padding:22px 17px}h2{font-size:22px}.lead{font-size:20px}table{font-size:12px;line-height:1.7}th,td{padding:8px 6px}.step{grid-template-columns:43px minmax(0,1fr);gap:10px;padding:14px 8px}.stepmark b{font-size:20px}.stepmark{font-size:11px}.step h4{font-size:15px}aside.mine,aside.note,aside.quote{padding:14px}pre{padding:13px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:10pt}.hero,.toc,.tools,.end{display:none}.shell{display:block;padding:0}section{border:0;padding:0;break-after:page}h2{font-size:18pt}h3{font-size:12pt}table{font-size:9pt}.step{break-inside:avoid}.refs{font-size:8pt}details{break-inside:avoid}a{color:inherit}@page{size:A4;margin:17mm}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="label">B7-1 / PROGRAM FLOW / PERSONAL STUDY</div>
+  <h1>%%TITLE%%</h1>
+  <p>%%SUBTITLE%%</p>
+  <p class="meta">2026-09-17 · 코드 기준 b1cca1e · 12개 주제 · 가상 데이터만 사용 · 인터넷 없이 읽기 가능</p>
+  <div class="tools"><a href="%%PDF%%">12쪽 PDF 열기</a><button id="reveal" type="button">확인 질문 정답 펼치기</button><button id="conceal" type="button">정답 가리기</button></div>
+</header>
+<div class="shell">
+  <aside class="toc"><h2>실행 과정 따라가기</h2><nav aria-label="학습 목차">%%NAV%%</nav><div class="legend"><b>C · 내가 구현</b>민트색 강조와 C 표시는 건영님의 DB 구현입니다. A/B/D 표시는 연결되는 팀원 코드입니다.</div></aside>
+  <main>%%SECTIONS%%<footer class="end">개인 학습용 · 저장소 밖에 보관 · 앱 코드 수정·실제 DB 접속·커밋·푸시 없음</footer></main>
+</div>
+<script>
+const answers=Array.from(document.querySelectorAll('details'));
+document.getElementById('reveal').addEventListener('click',()=>answers.forEach(item=>item.open=true));
+document.getElementById('conceal').addEventListener('click',()=>answers.forEach(item=>item.open=false));
+window.addEventListener('beforeprint',()=>answers.forEach(item=>item.open=true));
+</script>
+</body>
+</html>

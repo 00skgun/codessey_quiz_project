@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AWS 태그 관련 평가 피드백을 분류표, 전후 비교, 보완 체크리스트로 쉽게 설명합니다.">
+  <meta name="color-scheme" content="light">
+  <title>AWS 태그, 쉽게 이해하기 · 실습 피드백 가이드</title>
+  <style>
+    :root{--paper:#f5f4ef;--ink:#1b302d;--muted:#586962;--line:#d9ded5;--green:#225b48;--mint:#d8ebd9;--lime:#d9ef88;--orange:#9c4b20;--peach:#f5e6d8;--white:#fffefb;--radius:20px;--mono:Consolas,"Courier New",monospace}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:95px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+    button,select,input{font:inherit}button,a,select,input{-webkit-tap-highlight-color:transparent}
+    a{color:var(--green);text-underline-offset:4px}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+    button{color:inherit}svg{display:block}h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.3;letter-spacing:-.055em}h2{font-size:clamp(27px,3.2vw,39px)}h3{font-size:21px}code{font-family:var(--mono);font-size:.9em}b,strong{font-weight:750}
+    .wrap{width:min(1120px,calc(100% - 64px));margin:auto}.skip{position:fixed;left:20px;top:-100px;z-index:10;padding:12px;background:var(--white)}.skip:focus{top:12px}
+    .topbar{position:sticky;top:0;z-index:5;background:rgba(245,244,239,.96);border-bottom:1px solid var(--line)}.top-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:800;letter-spacing:.02em}.brand-mark{display:grid;place-items:center;width:31px;height:31px;background:var(--green);color:var(--lime);border-radius:9px;font:700 18px var(--mono)}nav{display:flex;gap:27px}nav a{font-size:13px;text-decoration:none;color:var(--muted)}nav a:hover{color:var(--green);text-decoration:underline}.reading{height:2px;background:var(--green);width:0}
+    .hero{padding:70px 0 52px;display:grid;grid-template-columns:1.15fr 1fr;gap:65px;align-items:center}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--green);font-size:12px;font-weight:800;letter-spacing:.11em}.dot{height:7px;width:7px;flex:none;background:var(--green);border-radius:50%}h1{font-size:clamp(40px,5.1vw,62px);margin:22px 0;line-height:1.21}h1 em{font-style:normal;color:var(--green)}.hero-copy{font-size:17px;max-width:470px;color:var(--muted)}.hero-copy strong{color:var(--ink)}.hero-link{margin-top:29px;display:inline-flex;align-items:center;gap:20px;padding:12px 20px;border-radius:9px;background:var(--green);color:var(--white);text-decoration:none;font-size:14px;font-weight:700}
+    .label-scene{position:relative;min-height:375px;display:grid;place-items:center;background:#e7ebdf;border:1px solid #dbe1d2;border-radius:28px;background-image:radial-gradient(#b8c8b3 .8px,transparent .8px);background-size:18px 18px;overflow:hidden}.scene-caption{position:absolute;left:23px;top:17px;font-size:10px;letter-spacing:.1em;color:var(--muted);font-weight:700}.label-sheet{position:relative;background:var(--white);width:min(320px,86%);padding:25px;border-radius:13px;box-shadow:0 16px 36px #263e2c15;transform:rotate(-4deg);border:1px solid #d6decf}.sheet-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:18px}.sheet-title{font-size:20px;font-weight:850}.server-icon{display:flex;flex-direction:column;gap:4px}.server-icon i{display:block;border:1.5px solid var(--green);height:10px;width:25px;border-radius:3px}.key-value{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;padding:9px 0}.key-value code{color:var(--muted)}.tag-value{background:var(--mint);padding:3px 9px;border-radius:5px;font-family:var(--mono);font-size:12px;font-weight:700}.sheet-bottom{margin-top:13px;padding-top:12px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}.sticker{position:absolute;right:15px;bottom:22px;transform:rotate(6deg);background:var(--lime);padding:10px 16px;border-radius:8px;font-size:12px;font-weight:800;box-shadow:0 3px 8px #263e2c10}
+    .takeaway{display:flex;gap:18px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:13px;padding:21px 25px;font-size:15px}.takeaway-label{flex:none;background:var(--peach);color:var(--orange);font-size:11px;font-weight:800;padding:5px 10px;border-radius:5px}.takeaway strong{color:var(--green)}
+    section{padding:68px 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:28px}.section-number{display:block;font:700 11px var(--mono);color:var(--green);letter-spacing:.12em;margin-bottom:12px}.intro{color:var(--muted);margin-top:13px;font-size:15px}.section-note{color:var(--muted);font-size:12px;max-width:225px}.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.status-card{padding:25px 24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white)}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:100px;padding:4px 10px;font-size:11px;font-weight:800;background:var(--mint);color:var(--green)}.badge.orange{background:var(--peach);color:var(--orange)}.status-card h3{margin:17px 0 10px;font-size:20px}.status-card p{font-size:14px;color:var(--muted)}.source{display:inline-block;margin-top:18px;font-size:11px}.fine-note{font-size:13px;margin-top:18px;color:var(--muted);padding-left:13px;border-left:2px solid #b9c8b5}.fine-note strong{color:var(--ink)}
+    .concept-top{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;margin:30px 0}.concept-copy{font-size:16px;color:var(--muted)}.concept-copy p+p{margin-top:13px}.concept-copy strong{color:var(--ink)}.equation{display:flex;align-items:center;justify-content:center;gap:17px;background:#e6ecdf;padding:30px 20px;border-radius:var(--radius)}.equation-item{text-align:center}.equation-item small{display:block;color:var(--muted);font-size:12px;margin-top:9px}.equation-item code{font-weight:700;font-size:18px}.equal{font:24px var(--mono);color:var(--green)}.tag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}.tag-meaning{border-top:2px solid var(--green);padding-top:20px}.tag-meaning code{font-size:17px;font-weight:700}.tag-meaning h3{font-size:19px;margin:9px 0}.tag-meaning p{font-size:14px;color:var(--muted)}.example{margin-top:16px;display:inline-block;padding:5px 10px;border-radius:5px;background:#e3e9df;font:12px var(--mono)}
+    .demo{border:1px solid #cbd7c7;border-radius:var(--radius);background:var(--white);overflow:hidden}.demo-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px;background:#e8eee3;border-bottom:1px solid #cbd7c7}.demo-title{font-size:13px;font-weight:800}.demo-title small{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:3px}.switch-button{display:flex;align-items:center;gap:12px;background:transparent;border:0;padding:5px 0;font-size:13px;font-weight:750}.switch-track{width:42px;height:25px;background:#849087;border-radius:20px;position:relative;transition:background .2s;flex:none}.switch-track:after{content:"";position:absolute;left:4px;top:4px;width:17px;height:17px;border-radius:50%;background:white;transition:transform .2s}.switch-button[aria-checked="true"] .switch-track{background:var(--green)}.switch-button[aria-checked="true"] .switch-track:after{transform:translateX(17px)}.demo-body{padding:24px}.filter-row{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:22px}.filter-control{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.filter-control label{font-size:13px;font-weight:700}.filter-control select{border:1px solid #bbc8b7;border-radius:7px;padding:8px 34px 8px 12px;background:var(--white);font-size:13px;color:var(--ink);max-width:100%}.result-count{font:12px var(--mono);color:var(--muted)}.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.resource{border:1px solid var(--line);padding:17px;border-radius:11px}.resource-kind{font:10px var(--mono);color:var(--green);letter-spacing:.07em}.resource-name{font-size:14px;font-weight:800;margin-top:7px}.resource-id{font:10px var(--mono);color:var(--muted);margin-top:5px}.resource-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px}.resource-tags span{font:10px/1.7 var(--mono);padding:3px 6px;border-radius:4px;background:#e6efdf}.resource-untagged{font-size:11px;color:#79624c;margin-top:13px}.empty-state{grid-column:1/-1;padding:37px 20px;background:#fbf3eb;border:1px dashed #dcc5ae;border-radius:12px;text-align:center}.empty-state strong{display:block;font-size:17px}.empty-state p{font-size:13px;color:var(--muted);margin:9px 0 17px}.small-button{font-size:12px;padding:8px 13px;border:1px solid var(--green);background:var(--white);border-radius:6px;color:var(--green);font-weight:700}.demo-explanation{margin-top:21px;border-top:1px solid var(--line);padding-top:17px;font-size:13px;color:var(--muted)}.demo-explanation strong{color:var(--green)}.legend{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-top:14px}.legend svg{flex:none}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:31px 0}.step-circle{display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:var(--green);color:var(--white);font:13px var(--mono);margin-bottom:14px}.step h3{font-size:19px;margin-bottom:10px}.step p{font-size:14px;color:var(--muted)}.step small{display:block;font-size:11px;color:var(--green);margin-top:12px}.policy-box{background:#203d34;color:#f4f6ef;border-radius:var(--radius);padding:28px 30px;display:grid;grid-template-columns:1fr 1.2fr;gap:35px;align-items:start}.policy-box h3{font-size:21px}.policy-box p{font-size:13px;color:#d2dfd2;margin-top:12px}.policy-box .badge{background:#385b48;color:var(--lime);margin-bottom:12px}.policy-values{display:grid;grid-template-columns:1fr;gap:8px}.policy-value{display:flex;gap:20px;justify-content:space-between;padding:8px 0;border-bottom:1px solid #466054;font:13px/1.6 var(--mono)}.policy-value span:last-child{color:var(--lime)}.policy-caption{grid-column:1/-1;color:#c7d7c8;font-size:12px}.details-stack{margin-top:20px}.details-stack details{border:1px solid var(--line);background:var(--white);border-radius:11px;padding:17px 20px;margin-top:10px}.details-stack summary{font-size:14px;font-weight:750;cursor:pointer}.details-stack p{font-size:13px;color:var(--muted);margin-top:12px}.details-stack a{font-size:12px}
+    .learning{display:grid;grid-template-columns:.85fr 1.15fr;gap:55px}.learning-note{font-size:14px;color:var(--muted);margin-top:16px}.check-progress{margin-top:25px}.progress-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:9px}.progress-track{height:6px;background:#dfe5da;border-radius:10px;overflow:hidden}.progress-fill{height:100%;width:0;background:var(--green);transition:width .2s}.reset{margin-top:15px;background:transparent;padding:0;border:0;text-decoration:underline;text-underline-offset:4px;color:var(--muted);font-size:12px}.checks{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:8px 23px}.check-item{display:flex;align-items:flex-start;gap:13px;padding:17px 0;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}.check-item:last-child{border:0}.check-item input{width:18px;height:18px;accent-color:var(--green);margin:4px 0 0;flex:none}.check-item small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:4px}.check-item:has(input:checked){color:var(--green)}
+    .recap{margin:45px 0 0;padding:25px 30px;border-left:3px solid var(--green);background:#e6ecdf;border-radius:0 12px 12px 0}.recap .eyebrow{font-size:10px;margin-bottom:10px}.recap p{font-size:17px;line-height:1.8}.sources{padding:35px 0 42px;display:flex;justify-content:space-between;gap:35px;color:var(--muted);font-size:11px}.sources strong{color:var(--ink)}.source-links{display:flex;gap:15px;flex-wrap:wrap;margin-top:8px}.footer-note{max-width:300px;text-align:right}.no-script{background:var(--peach);padding:15px 24px;font-size:13px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(min-width:1300px){.hero{padding-top:85px;padding-bottom:63px}}
+    @media(max-width:900px){.hero{gap:30px}.label-sheet{padding:20px}.status-card{padding:21px 18px}.resources{grid-template-columns:repeat(2,1fr)}.learning{gap:30px}.policy-box{gap:20px}.section-note{max-width:180px}}
+    @media(max-width:680px){.wrap{width:calc(100% - 36px)}.top-inner{min-height:62px;gap:10px}.brand{font-size:12px}.brand-mark{width:27px;height:27px}nav{gap:13px}nav a{font-size:11px}.hero{grid-template-columns:1fr;padding:40px 0 30px;gap:30px}h1{font-size:43px}.hero-copy{font-size:16px}.label-scene{min-height:330px}.label-sheet{width:290px}.sticker{right:23px}.takeaway{align-items:flex-start;flex-direction:column;gap:10px;padding:20px;font-size:14px}section{padding:45px 0}.section-head{grid-template-columns:1fr;gap:12px;margin-bottom:23px}.section-note{max-width:none}.status-grid{grid-template-columns:1fr;gap:11px}.status-card{padding:21px}.status-card h3{margin-top:12px}.source{margin-top:12px}.concept-top{grid-template-columns:1fr;gap:23px}.tag-grid{grid-template-columns:1fr;gap:23px}.tag-meaning{padding-top:15px}.tag-meaning h3{display:inline-block;margin-left:12px}.example{margin-top:10px}.demo-toolbar{padding:17px;align-items:flex-start;gap:10px}.switch-button{font-size:11px;gap:7px}.demo-body{padding:17px}.resources{grid-template-columns:1fr 1fr;gap:9px}.resource{padding:13px}.resource-name{font-size:12px}.resource-tags span{font-size:9px}.filter-control{gap:8px}.filter-control select{font-size:12px}.steps{grid-template-columns:1fr;gap:22px}.step{display:grid;grid-template-columns:31px 1fr;column-gap:13px}.step-circle{grid-row:1/4;margin:0}.step h3{font-size:18px}.step small{margin-top:6px}.policy-box{grid-template-columns:1fr;padding:23px;gap:18px}.learning{grid-template-columns:1fr;gap:24px}.recap{padding:21px;margin-top:30px}.recap p{font-size:15px}.sources{flex-direction:column;gap:20px}.footer-note{max-width:none;text-align:left}.source-links{gap:10px 15px}}
+    @media(max-width:370px){h1{font-size:37px}.resources{grid-template-columns:1fr}.brand{gap:6px}.brand-mark{width:24px;height:24px}nav{gap:10px}.equation{gap:10px}.equation-item code{font-size:16px}}
+    @media(max-width:680px){.label-scene{min-height:365px;padding:42px 0 20px}.switch-button{white-space:nowrap}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+    @media print{.topbar,.hero-link,.filter-row,.switch-button,.checks,.check-progress,.reset,.reading{display:none!important}.wrap{width:100%}body{background:white;color:#111;font-size:11pt}.hero{padding:20px 0;gap:30px}h1{font-size:35px}h2{font-size:24px}section{padding:28px 0}.status-grid,.tag-grid,.steps{break-inside:avoid}.label-scene{min-height:300px}.learning{display:block}.learning-note{margin-bottom:10px}.sources{padding-bottom:10px}a{color:inherit}details p{display:block!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
+  <header class="topbar">
+    <div class="wrap top-inner">
+      <a class="brand" href="#main"><span class="brand-mark" aria-hidden="true">#</span> CLOUD LAB / 쉬운 설명</a>
+      <nav aria-label="페이지 목차"><a href="#concept">태그란?</a><a href="#demo">직접 비교</a><a href="#next">보완 방법</a></nav>
+    </div>
+    <div class="reading" id="reading" aria-hidden="true"></div>
+  </header>
+  <main class="wrap" id="main">
+    <div class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> 평가 피드백, 쉽게 읽기</div>
+        <h1>태그는 리소스에<br>붙이는 <em>분류표</em>예요.</h1>
+        <p class="hero-copy">“어느 실습에서 만들었지? 누가 관리하지?”<br>이 질문의 답을 서버와 디스크에 붙여두는 것.<br><strong>Project · Owner · Environment</strong>가 그 분류표입니다.</p>
+        <a class="hero-link" href="#demo">태그 적용 전후 비교하기 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="label-scene" role="img" aria-label="설명용 EC2 분류표. Project는 mission, Owner는 cloud-lab, Environment는 lab입니다.">
+        <span class="scene-caption">RESOURCE LABEL / 설명용 예시</span>
+        <div class="label-sheet">
+          <div class="sheet-top"><span class="sheet-title">mission-web</span><span class="server-icon" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="key-value"><code>Project</code><span class="tag-value">mission</span></div>
+          <div class="key-value"><code>Owner</code><span class="tag-value">cloud-lab</span></div>
+          <div class="key-value"><code>Environment</code><span class="tag-value">lab</span></div>
+          <div class="sheet-bottom">어떤 작업 · 누구 담당 · 어떤 환경</div>
+        </div>
+        <span class="sticker">서버에도 정리 라벨을!</span>
+      </div>
+    </div>
+    <div class="takeaway"><span class="takeaway-label">피드백의 핵심</span><p>현재는 <strong>이름·ID로 추적한 기록</strong>이 있어요. 여기에 <strong>공통 태그 기준 + 확인 증거</strong>를 더하라는 뜻입니다.</p></div>
+
+    <section id="current" aria-labelledby="current-title">
+      <div class="section-head"><div><span class="section-number">01 / 현재 기록</span><h2 id="current-title">“이미 있는 거 아닌가요?”</h2><p class="intro">제안은 있어요. 실제 적용과 확인 절차는 아직 기록되어 있지 않아요.</p></div><p class="section-note">아래 상태는 저장된 문서 기준입니다.<br>AWS 계정을 새로 조회한 결과는 아닙니다.</p></div>
+      <div class="status-grid">
+        <article class="status-card"><span class="badge">기록 있음</span><h3>이름·ID로 추적</h3><p><code>mission-</code> 이름 규칙과 리소스 ID, 서울 리전, 정리 체크리스트로 대상을 확인했어요.</p><a class="source" href="../README.md#6-리소스-추적과-정리">근거: README 6절 ↗</a></article>
+        <article class="status-card"><span class="badge orange">제안만 있음</span><h3>공통 태그 적용</h3><p><code>Project / Owner / Environment</code>를 앞으로 쓰자는 설명은 있지만, 실제 적용을 보여주는 기록은 없어요.</p><a class="source" href="evaluation.md#2-4-실습-리소스-추적과-정리-기준">근거: 평가 설명 2-4 ↗</a></article>
+        <article class="status-card"><span class="badge orange">항목 없음</span><h3>태그 확인 절차</h3><p>정리 체크리스트에 “태그가 맞게 붙었는지 확인”하는 항목은 아직 없어요.</p><a class="source" href="cleanup-checklist.md">근거: 정리 체크리스트 ↗</a></article>
+      </div>
+      <p class="fine-note"><strong>정확한 표현:</strong> “태그를 전혀 안 썼다”가 아니라, “공통 분류 태그의 적용 증거가 없다”입니다. EC2의 이름도 <code>Name</code> 태그로 표시될 수 있어요.</p>
+    </section>
+
+    <section id="concept" aria-labelledby="concept-title">
+      <span class="section-number">02 / 개념 이해</span><h2 id="concept-title">이름표에 칸을 세 개 더 만든다고 생각하세요.</h2>
+      <div class="concept-top"><div class="concept-copy"><p>이름은 <strong>“이 서버가 무엇인지”</strong> 알려줘요.<br>태그는 <strong>“어느 묶음에 속하는지”</strong> 알려줘요.</p><p>서버 이름이 제각각이어도 같은 실습의 리소스라면<br><code>Project=mission</code>으로 함께 찾을 수 있어요.</p></div><div class="equation"><div class="equation-item"><code>Project</code><small>항목 이름 · Key</small></div><span class="equal">=</span><div class="equation-item"><code>mission</code><small>붙일 내용 · Value</small></div></div></div>
+      <div class="tag-grid">
+        <article class="tag-meaning"><code>Project</code><h3>어느 작업인가요?</h3><p>같은 실습에서 만든 서버·디스크·네트워크를 한 묶음으로 구분해요.</p><span class="example">Project = mission</span></article>
+        <article class="tag-meaning"><code>Owner</code><h3>누가 담당하나요?</h3><p>관리 담당자를 식별하는 라벨이에요. 이 값을 붙인다고 IAM 권한이 생기지는 않아요.</p><span class="example">Owner = cloud-lab</span></article>
+        <article class="tag-meaning"><code>Environment</code><h3>어떤 환경인가요?</h3><p>연습용인지 실제 운영용인지 구분해요. 이 예시에서 <code>lab</code>은 실습 환경이에요.</p><span class="example">Environment = lab</span></article>
+      </div>
+      <p class="fine-note">위 값은 <strong>다음 실습에 사용할 수 있는 예시</strong>입니다. 과거 리소스에 실제로 붙였던 값이라는 뜻은 아닙니다. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html" target="_blank" rel="noopener noreferrer">AWS 태그 설명 ↗</a></p>
+    </section>
+
+    <section id="demo" aria-labelledby="demo-title">
+      <div class="section-head"><div><span class="section-number">03 / 직접 비교</span><h2 id="demo-title">디스크 이름이 없어도, 같은 실습인지 찾을 수 있을까요?</h2><p class="intro">① Project 필터를 골라보세요. ② 예시 태그를 켜면 결과가 달라져요.</p></div></div>
+      <noscript><p class="no-script">직접 비교 기능에는 JavaScript가 필요합니다. 태그를 적용하면 이름이 없는 디스크도 Project 값으로 함께 찾을 수 있습니다.</p></noscript>
+      <div class="demo">
+        <div class="demo-toolbar"><div class="demo-title">리소스 목록 실험실<small>설명용 가상 데이터 5개 · 실제 AWS에 연결되지 않음</small></div><button class="switch-button" id="tag-toggle" type="button" role="switch" aria-checked="false" aria-label="예시 태그 적용"><span id="toggle-label">예시 태그 꺼짐</span><span class="switch-track" aria-hidden="true"></span></button></div>
+        <div class="demo-body">
+          <div class="filter-row"><div class="filter-control"><label for="project-filter">Project 필터</label><select id="project-filter"><option value="all">전체 리소스 보기</option><option value="mission">mission 실습만 보기</option><option value="team-app">team-app 프로젝트만 보기</option></select></div><span class="result-count" id="result-count" role="status" aria-live="polite">5 / 5 resources</span></div>
+          <div class="resources" id="resources" aria-label="가상 리소스 목록">
+            <article class="resource"><div class="resource-kind">EC2 / 서버</div><div class="resource-name">mission-web</div><div class="resource-id">i-demo-mission</div><p class="resource-untagged">공통 분류 태그 없음</p></article>
+            <article class="resource"><div class="resource-kind">EBS / 디스크</div><div class="resource-name">(이름 없음)</div><div class="resource-id">vol-demo-01</div><p class="resource-untagged">공통 분류 태그 없음</p></article>
+            <article class="resource"><div class="resource-kind">VPC / 네트워크</div><div class="resource-name">mission-vpc</div><div class="resource-id">vpc-demo-mission</div><p class="resource-untagged">공통 분류 태그 없음</p></article>
+            <article class="resource"><div class="resource-kind">EC2 / 서버</div><div class="resource-name">team-api</div><div class="resource-id">i-demo-team</div><p class="resource-untagged">공통 분류 태그 없음</p></article>
+            <article class="resource"><div class="resource-kind">EBS / 디스크</div><div class="resource-name">(이름 없음)</div><div class="resource-id">vol-demo-02</div><p class="resource-untagged">공통 분류 태그 없음</p></article>
+          </div>
+          <p class="demo-explanation" id="demo-explanation">현재는 <strong>이름과 ID</strong>를 보고 대상을 구분해야 해요. 이름이 없는 디스크는 연결 정보나 기존 기록을 더 확인해야 합니다.</p>
+        </div>
+      </div>
+      <p class="legend"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="currentColor"/><path d="M10 9v5M10 5.5v1" stroke="currentColor" stroke-width="1.5"/></svg>태그로 후보를 찾은 뒤에도, 삭제 전에는 리소스 ID와 소유 관계를 확인해야 해요.</p>
+    </section>
+
+    <section id="next" aria-labelledby="next-title">
+      <span class="section-number">04 / 보완 방법</span><h2 id="next-title">다음 실습에서는 세 가지만 더하면 돼요.</h2><p class="intro">이번 리소스는 이미 삭제했으므로, 다음 실습의 기준과 확인 절차로 준비합니다.</p>
+      <div class="steps">
+        <article class="step"><span class="step-circle">1</span><h3>기준을 정하기</h3><p>태그 이름과 값, 적용할 대상을 문서에 정해요. 같은 실습은 같은 값을 사용합니다.</p><small>준비물: 공통 태그 기준표</small></article>
+        <article class="step"><span class="step-circle">2</span><h3>붙이고 확인하기</h3><p>태그를 지원하는 실습 리소스에 적용해요. EC2뿐 아니라 EBS와 네트워크도 각각 확인합니다.</p><small>준비물: 리소스별 태그 화면</small></article>
+        <article class="step"><span class="step-circle">3</span><h3>증거를 남기기</h3><p>태그 필터 결과와 기존 ID 목록을 비교하고, 확인 화면을 보관한 뒤 체크리스트에 기록해요.</p><small>준비물: 필터 결과 + ID 대조 기록</small></article>
+      </div>
+      <div class="policy-box"><div><span class="badge">다음 실습용 기준 예시</span><h3>공통 태그 기준표</h3><p>적용 대상: 태그를 지원하는 실습 EC2·EBS·VPC·서브넷·라우팅 테이블·SG·IGW 등.<br>각 리소스에 누락이 없는지 확인합니다.</p></div><div class="policy-values"><div class="policy-value"><span>Project</span><span>mission</span></div><div class="policy-value"><span>Owner</span><span>cloud-lab</span></div><div class="policy-value"><span>Environment</span><span>lab</span></div></div><div class="policy-caption">문서로 정한 운영 규칙 예시입니다. AWS에 적용하거나 IAM으로 강제한 정책은 아닙니다. Owner 값은 담당자를 표시하는 예시입니다.</div></div>
+      <div class="details-stack">
+        <details><summary>IAM 파일에 CreateTags가 있는데, 이미 정책이 있는 건 아닌가요?</summary><p><a href="iam-policy.json">현재 IAM 파일</a>의 <code>ec2:CreateTags</code>는 태그를 붙이는 작업을 허용합니다. <strong>태그를 붙일 수 있는 권한</strong>과 <strong>반드시 특정 태그를 붙여야 한다는 규칙</strong>은 달라요. 현재 파일에는 Project·Owner·Environment를 필수로 검사하는 조건이 없습니다.</p></details>
+        <details><summary>태그를 붙이면 비용도 바로 프로젝트별로 보이나요?</summary><p>비용 보고서에 사용자 정의 태그를 사용하려면 Billing에서 <strong>비용 할당 태그 활성화</strong>도 필요해요. 태그를 붙였다는 사실과 비용 보고서에서 분류되는지 확인한 사실을 따로 기록합니다. 활성화와 데이터 반영에 시간이 걸릴 수 있어요. 이번 실습에서는 이 설정을 완료했다는 기록이 없습니다. <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html" target="_blank" rel="noopener noreferrer">AWS 비용 할당 태그 안내 ↗</a></p></details>
+        <details><summary>지금 문서에 “태그 적용 완료”라고 추가해도 되나요?</summary><p>현재 자료에는 공통 태그 적용 증거가 없고 실습 리소스도 이미 정리했습니다. 따라서 <strong>“향후 실습에 적용할 보완 기준”</strong>으로 적는 것이 정확해요. 실제 완료 표시는 다음 실습에서 적용과 검증을 마친 뒤 남깁니다.</p></details>
+      </div>
+    </section>
+
+    <section id="checklist" aria-labelledby="checklist-title">
+      <div class="learning"><div><span class="section-number">05 / 이해 확인</span><h2 id="checklist-title">체크리스트에는<br>이렇게 추가하면 돼요.</h2><p class="learning-note">오른쪽 항목을 읽고 이해한 내용을 체크해보세요. 다음 실습의 확인 항목으로 사용할 수 있습니다.</p><p class="fine-note">이 화면의 체크는 <strong>학습용</strong>입니다. 원본 Markdown, AWS 리소스, 실제 수행 기록을 변경하지 않습니다. 새로고침하면 초기화됩니다.</p><div class="check-progress"><div class="progress-top"><span>읽고 이해한 항목</span><strong id="check-count" role="status" aria-live="polite">0 / 5</strong></div><div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div></div><button class="reset" id="reset-checks" type="button">학습 체크 초기화</button></div>
+        <div class="checks" id="learning-checks">
+          <label class="check-item"><input type="checkbox"><span><strong>태그 이름과 값을 정한다.</strong><small>Project·Owner·Environment의 공통 기준과 적용 대상을 문서에 적기.</small></span></label>
+          <label class="check-item"><input type="checkbox"><span><strong>리소스별로 태그 적용을 확인한다.</strong><small>EC2와 연결된 EBS, 태그를 지원하는 네트워크 리소스 각각 확인하기.</small></span></label>
+          <label class="check-item"><input type="checkbox"><span><strong>필터 결과를 ID 목록과 대조한다.</strong><small>Project=mission으로 찾은 목록에서 빠진 실습 리소스가 없는지 확인하기.</small></span></label>
+          <label class="check-item"><input type="checkbox"><span><strong>확인 화면과 결과를 보관한다.</strong><small>리소스 ID·태그 값·확인 시각이 드러나는 증거 남기기.</small></span></label>
+          <label class="check-item"><input type="checkbox"><span><strong>비용 분류도 사용한다면 별도로 검증한다.</strong><small>비용 할당 태그 활성화와 보고서 반영 여부를 따로 확인하기.</small></span></label>
+        </div>
+      </div>
+      <div class="recap"><div class="eyebrow">평가할 때 이렇게 설명하면 돼요</div><p>“이번에는 이름·ID·리전·체크리스트로 추적했습니다.<br>공통 태그의 적용 증거는 없으므로, <strong>다음 실습에서는 태그 기준을 정하고<br>리소스별 적용과 필터 결과까지 확인하겠습니다.</strong>”</p></div>
+    </section>
+  </main>
+  <footer class="wrap sources"><div><strong>원본 기록 &amp; 참고 자료</strong><div class="source-links"><a href="../README.md">README</a><a href="evaluation.md">평가 요소</a><a href="cleanup-checklist.md">정리 체크리스트</a><a href="iam-policy.json">IAM 정책</a><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html" target="_blank" rel="noopener noreferrer">AWS 태그 문서 ↗</a><a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html" target="_blank" rel="noopener noreferrer">AWS 비용 태그 문서 ↗</a></div></div><p class="footer-note">2026-10-16 문서 기준 · 설명용 HTML<br>과거 수행 사실과 앞으로의 보완 예시를 구분합니다.</p></footer>
+  <script>
+    (() => {
+      'use strict';
+      const samples = [
+        {kind:'EC2 / 서버',name:'mission-web',id:'i-demo-mission',project:'mission',owner:'cloud-lab',env:'lab'},
+        {kind:'EBS / 디스크',name:'(이름 없음)',id:'vol-demo-01',project:'mission',owner:'cloud-lab',env:'lab'},
+        {kind:'VPC / 네트워크',name:'mission-vpc',id:'vpc-demo-mission',project:'mission',owner:'cloud-lab',env:'lab'},
+        {kind:'EC2 / 서버',name:'team-api',id:'i-demo-team',project:'team-app',owner:'team-a',env:'dev'},
+        {kind:'EBS / 디스크',name:'(이름 없음)',id:'vol-demo-02',project:'team-app',owner:'team-a',env:'dev'}
+      ];
+      const toggle = document.getElementById('tag-toggle');
+      const filter = document.getElementById('project-filter');
+      const list = document.getElementById('resources');
+      let tagged = false;
+      function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+      function render() {
+        const selected = filter.value;
+        const shown = samples.filter(resource => selected === 'all' || (tagged && resource.project === selected));
+        toggle.setAttribute('aria-checked', String(tagged));
+        document.getElementById('toggle-label').textContent = tagged ? '예시 태그 켜짐' : '예시 태그 꺼짐';
+        document.getElementById('result-count').textContent = `${shown.length} / ${samples.length} resources`;
+        list.replaceChildren();
+        shown.forEach(resource => {
+          const card = element('article','resource');
+          card.append(element('div','resource-kind',resource.kind),element('div','resource-name',resource.name),element('div','resource-id',resource.id));
+          if (tagged) {
+            const tags = element('div','resource-tags');
+            tags.append(element('span','',`Project=${resource.project}`),element('span','',`Owner=${resource.owner}`),element('span','',`Environment=${resource.env}`));
+            card.append(tags);
+          } else card.append(element('p','resource-untagged','공통 분류 태그 없음'));
+          list.append(card);
+        });
+        if (!shown.length) {
+          const empty = element('div','empty-state');
+          empty.append(element('strong','','Project 태그가 없어 필터로 찾을 수 없어요.'),element('p','','리소스가 사라진 것은 아니에요. 예시 태그를 켜서 같은 실습의 묶음을 찾아보세요.'));
+          const button = element('button','small-button','예시 태그 켜보기');
+          button.type = 'button';
+          button.addEventListener('click', () => {tagged = true;render();toggle.focus();});
+          empty.append(button);
+          list.append(empty);
+        }
+        const explanation = document.getElementById('demo-explanation');
+        explanation.replaceChildren();
+        if (!tagged) explanation.append('현재는 ',element('strong','','이름과 ID'),'를 보고 대상을 구분해야 해요. 이름이 없는 디스크는 연결 정보나 기존 기록을 더 확인해야 합니다.');
+        else if (selected === 'all') explanation.append('리소스 이름이 달라도 ',element('strong','','같은 Project 값'),'으로 묶을 수 있어요. 위 필터에서 mission을 선택해보세요.');
+        else explanation.append(element('strong','',`Project=${selected}`),'인 리소스만 보입니다. 이름이 없는 디스크도 같은 프로젝트의 리소스로 함께 찾아져요.');
+      }
+      toggle.addEventListener('click', () => {tagged = !tagged;render();});
+      filter.addEventListener('change', render);
+      const checks = Array.from(document.querySelectorAll('#learning-checks input'));
+      function updateChecks() {
+        const completed = checks.filter(check => check.checked).length;
+        document.getElementById('check-count').textContent = `${completed} / ${checks.length}`;
+        document.getElementById('progress-fill').style.width = `${completed / checks.length * 100}%`;
+      }
+      checks.forEach(check => check.addEventListener('change',updateChecks));
+      document.getElementById('reset-checks').addEventListener('click', () => {checks.forEach(check => {check.checked = false;});updateChecks();});
+      function readingProgress() {
+        const available = document.documentElement.scrollHeight - window.innerHeight;
+        document.getElementById('reading').style.width = `${available > 0 ? Math.min(100,Math.max(0,window.scrollY / available * 100)) : 0}%`;
+      }
+      window.addEventListener('scroll',readingProgress,{passive:true});
+      window.addEventListener('resize',readingProgress);
+      render();updateChecks();readingProgress();
+    })();
+  </script>
+</body>
+</html>

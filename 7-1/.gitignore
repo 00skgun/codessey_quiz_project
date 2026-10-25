@@ -1,0 +1,3 @@
+# Local build dependencies and temporary render files
+tmp/
+output/study-build/vendor/

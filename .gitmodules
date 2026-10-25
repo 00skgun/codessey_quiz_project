@@ -1,0 +1,6 @@
+[submodule "2-2/make-program-with-friends"]
+	path = 2-2/make-program-with-friends
+	url = https://github.com/c-b2-2/make-program-with-friends.git
+[submodule "7-1/ai-chatbot-service"]
+	path = 7-1/ai-chatbot-service
+	url = https://github.com/Teamb7-1/ai-chatbot-service
